@@ -1,0 +1,375 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PANDA</title>
+        {% load static %}
+
+        <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'product.css' %}" rel="stylesheet">
+    </head>
+    <body>
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            <span aria-hidden="true">&times;</span>
+        </div>
+        {% endfor %}
+
+        
+
+        {% if user.is_authenticated %}
+        <header class="site-header sticky-top py-1">
+            <nav class="container d-flex flex-column flex-md-row justify-content-between">
+                <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
+                <a class="py-2 d-none d-md-inline-block" href="#">PANDA</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">TOUR</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">PRODUCT</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">ROUTES</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">PRICING</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">HELP</a>
+                <a class="py-2 d-none d-md-inline-block" href="/signout">SIGNOUT</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+                <div class="col-md-5 p-lg-5 mx-auto my-5">
+                    <h1 class="display-4 fw-normal">PANDA BUS BOOKING AGENCY</h1>
+                    <p class="lead fw-normal">Panda has a good frequency of buses. That run throughout the day promonting safety and comfort of passengers. Panda staff are known for assisting passengers consistently.</p>
+                </div>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="form-background">
+    <div class="container">
+        <form id="flights-form" class="flights-form" action="javascript:void(0)" method="get">
+            <div class="top_ban2 reduce-bottom-margin">
+                <div class="top_head shadowed no-break jquery-textfill">                
+                    <span class="heading">Flight Search</span>
+                    <table class="trip-type" style="width:250px;margin-top:8px;">
+                        <tr>
+                            <td style="width: 165px;">
+                                <label class="label-radio shadowed no-break">
+                                    <input class="radio-roundtrip" name="flights_trip_type" type="radio" value="1" checked="checked" tabindex="1">
+                                    <span class="radio-overlay"></span>Round Trip                            </label>
+                            </td>
+                            <td style="vertical-align:top; width: 140px;">
+                                <label class="label-radio shadowed no-break">
+                                    <input class="radio-oneway" name="flights_trip_type" type="radio" value="0" tabindex="2">
+                                    <span class="radio-overlay"></span>One-Way                            </label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+
+            <div class="top_ban3_left">
+                <div class="box1_input first-col">
+                    <div class="shadowed no-break">From</div>
+                    <input placeholder="Origin name or code" name="flights_origin" id="flights_origin" class="text-origin input_text_box" type="text" tabindex="3">
+                </div>
+
+                <div class="box2_input second-col">
+                    <div class="shadowed no-break">To</div>
+                    <input placeholder="Destination name or code" name="flights_destination" id="flights_destination" class="text-destination input_text_box" type="text" tabindex="4">
+                </div>
+            </div>          
+            <div class="clear"></div>
+
+            <div class="top_ban3_right">
+                <div class="box3_input first-col">                  
+                    <div class="first-col mobile-expand">
+                        <div class="shadowed no-break">Departing</div>
+                        <input placeholder="mm/dd/yy" name="flights_depart_date" id="flights_depart_date" class="date-departing input_date_box" type="text" tabindex="5">
+                    </div>
+                    <div class="second-col no-title mobile-hide">
+                        <select name="flights_departure_time" id="flights_departure_time" class="select-depart-time select_box" tabindex="6">
+                            <option value="anytime">Anytime</option>
+                            <option value="0">12:00 AM</option>
+                            <option value="1">1:00 AM</option>
+                            <option value="2">2:00 AM</option>
+                            <option value="3">3:00 AM</option>
+                            <option value="4">4:00 AM</option>
+                            <option value="5">5:00 AM</option>
+                            <option value="6">6:00 AM</option>
+                            <option value="7">7:00 AM</option>
+                            <option value="8">8:00 AM</option>
+                            <option value="9">9:00 AM</option>
+                            <option value="10">10:00 AM</option>
+                            <option value="11">11:00 AM</option>
+                            <option value="12">12:00 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">2:00 PM</option>
+                            <option value="15">3:00 PM</option>
+                            <option value="16">4:00 PM</option>
+                            <option value="17">5:00 PM</option>
+                            <option value="18">6:00 PM</option>
+                            <option value="19">7:00 PM</option>
+                            <option value="20">8:00 PM</option>
+                            <option value="21">9:00 PM</option>
+                            <option value="22">10:00 PM</option>
+                            <option value="23">11:00 PM</option>                 
+                        </select>
+                    </div>
+                </div>      
+                <div class="box4_input return second-col">       
+                    <div class="first-col mobile-expand">
+                        <div class="shadowed no-break">Returning</div>
+                        <input placeholder="mm/dd/yy" name="flights_return_date" class="date-returning input_date_box" type="text" tabindex="7">
+                    </div>                          
+                    <div class="second-col no-title mobile-hide">
+                        <select name="flights_return_time" class="select-return-time select_box" tabindex="8">
+                            <option value="anytime">Anytime</option>
+                            <option value="0">12:00 AM</option>
+                            <option value="1">1:00 AM</option>
+                            <option value="2">2:00 AM</option>
+                            <option value="3">3:00 AM</option>
+                            <option value="4">4:00 AM</option>
+                            <option value="5">5:00 AM</option>
+                            <option value="6">6:00 AM</option>
+                            <option value="7">7:00 AM</option>
+                            <option value="8">8:00 AM</option>
+                            <option value="9">9:00 AM</option>
+                            <option value="10">10:00 AM</option>
+                            <option value="11">11:00 AM</option>
+                            <option value="12">12:00 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">2:00 PM</option>
+                            <option value="15">3:00 PM</option>
+                            <option value="16">4:00 PM</option>
+                            <option value="17">5:00 PM</option>
+                            <option value="18">6:00 PM</option>
+                            <option value="19">7:00 PM</option>
+                            <option value="20">8:00 PM</option>
+                            <option value="21">9:00 PM</option>
+                            <option value="22">10:00 PM</option>
+                            <option value="23">11:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="first-col">
+                    <div class="box5_input first-col">
+                        <div class="shadowed no-break">Travelers</div>
+                        <select name="flights_passengers" class="select-passengers select_box" tabindex="9">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>      
+                    <div class="box6_input second-col">
+                        <div class="shadowed no-break">Class</div>
+                        <select name="flights_class" class="select-class select_box" tabindex="10">
+                            <option value="economy_coach">Economy</option>
+                            <option value="business">Business</option>
+                            <option value="first_class">First</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="box_check second-col">
+                    <label class="label-nonstop shadowed no-break">
+                        <input name="flights_nonstop" class="checkbox-nonstop" type="checkbox" value="" tabindex="11">
+                        <span class="checkbox-overlay"></span>Prefer Non-Stop Flights                    </label>              
+                </div>
+            </div>      
+            <div class="clear"></div>
+                            <div id="bbFrontDoorInsert">
+
+                </div>            
+            
+            <div class="first-col">                 
+                <div class="first-col">
+                    <div class="box_submit more-top-margin">
+                        <input name="submit" class="btn_submit submit-button no-break" value="SEARCH" type="submit" tabindex="12">
+                    </div>            
+                    
+                </div>
+            </div>
+            
+        </div>
+
+
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">TRINITY BUS</h2>
+                        <p class="lead">Kampala To Kigali.</p>
+                        <a class="btn btn-outline-secondary" href="/trinity home">Book Now</a>
+                    </div>
+                    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 p-3">
+                        <h2 class="display-5">JAGUAR COACHES</h2>
+                        <p class="lead">Kampala To Nairobi.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                    </div>
+                    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 p-3">
+                        <h2 class="display-5">VOLCANO COACHES</h2>
+                        <p class="lead">Kampala To Mombasa.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                    </div>
+                    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+                <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">LINK BUS</h2>
+                        <p class="lead">Fortportal To Kampala.</p>
+                        <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+                    </div>
+                    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 p-3">
+                        <h2 class="display-5">YY COACHES </h2>
+                        <p class="lead">Mbale To Kampala.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                    </div>
+                    <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">GLOBAL BUS</h2>
+                        <p class="lead">Kampala To Mbarara.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                        
+                    </div>
+                    <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 p-3">
+                        <h2 class="display-5">GAAGA BUS</h2>
+                        <p class="lead">Kampala To Lira.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                    </div>
+                    <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    </div>
+                </div>
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">BABY COACHES</h2>
+                        <p class="lead">Kampala To Sudan.</p>
+                        <a class="btn btn-outline-secondary" href="#">Book Now</a>
+                    </div>
+                    <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <small class="d-block mb-3 text-muted">&copy; GROUP 1 EVENING CLASS, BBC2</small>
+                    <small class="d-block mb-3 text-muted">&copy; 2022</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Terminals</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Kampala Bus Terminal</a></li>
+                        <li><a class="link-secondary" href="#">Mutukula Bus Terminal</a></li>
+                        <li><a class="link-secondary" href="#">Kasese Bus Terminal</a></li>
+                        <li><a class="link-secondary" href="#">Bwera Bus Terminal</a></li>
+                        <li><a class="link-secondary" href="#">Kibaal Bus Terminal</a></li>
+                        <li><a class="link-secondary" href="#">Masindi Bus Terminal</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Departments</h5>
+                        <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Passenger Guid</a></li>
+                        <li><a class="link-secondary" href="#">Customer Service Team</a></li>
+                        <li><a class="link-secondary" href="#">Online Support Team</a></li>
+                        <li><a class="link-secondary" href="#">Bus Crew</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Group Members</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">NATUMANYA HERMAN  19/U/2428/EVE</a></li>
+                        <li><a class="link-secondary" href="#">LATIM RONNIE DAVID  19/U/2573/EVE</a></li>
+                        <li><a class="link-secondary" href="#">ABENAITWE FINDLAY  19/U/1383</a></li>
+                        <li><a class="link-secondary" href="#">MAGEZI ELIZABETH  19/U/2137/EVE</a></li>
+                        <li><a class="link-secondary" href="#">SEKYANZI MOSES  	19/U/2910/EVE</a></li>
+                        <li><a class="link-secondary" href="#">ALITUBERA HELEN	19/U/2210/EVE</a></li>
+                        <li><a class="link-secondary" href="#">TUSIIME KENETH  	19/U/11146/PS</a></li>
+                        <li><a class="link-secondary" href="#">AHIIRWE SHIMAH  	19/U/12863/EVE</a></li>
+                        <li><a class="link-secondary" href="#">KARATUNGA FRANKDUKES  19/U/22782/EVE</a></li>
+                        <li><a class="link-secondary" href="#">JOVAN SSEBAGALA 	19/U/3381/EVE</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="#">Team</a></li>
+                        <li><a class="link-secondary" href="#">Locations</a></li>
+                        <li><a class="link-secondary" href="#">Privacy</a></li>
+                        <li><a class="link-secondary" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        {% else %}
+        <label> Sorry, Either incorrect username or incorrect Password, please try again <a href="/login/"> Login_here </a></label>
+        {% endif %}
+
+        <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>
+
+
+
+<div class ="container">
+    <div class="col-12">
+        flight seatch
+    </div>
+
+    <div class="col-6">
+        <div class="col-3">
+            one way
+        </div>
+        <div class="col-3">
+            round trip
+        </div>
+    </div>
+    <div class =""
+</div>

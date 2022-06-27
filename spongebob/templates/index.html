@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PANDA BUS BOOKING AGENCY - HOME</title>
+    {% load static %}
+
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="{% static 'index.css' %}" rel="stylesheet">
+    <link href="{% static 'header.css' %}" rel="stylesheet">
+    <link href="{% static 'cover.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
+    <a class="navbar-brand fw-bold" style="font-size: 50px;" href="#">PANDA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">CONTACT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">ABOUT_US</a>
+        </li>
+      </ul>
+      <form class="text-end">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <br>
+        <button type="button" class="btn btn-outline-primary fw-bold" type="submit">SEARCH</button>
+        <button type="button" class="btn btn-outline-light me-2 fw-bold"><a href="/login/">LOGIN</a></button>
+        <button type="button" class="btn btn-outline-light me-2 fw-bold "><a href="/sign up/">SIGN-UP</a></button>
+      </form>
+      <br>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>PANDA BUS BOOKING AGENCY</h1>
+    <p class="lead">Panda bus booking agency is an online bus ticket reservation system that assists the customer to inquire about avialability of seats in a particular bus, assists to reserve a ticket and also cancel a booked ticket.</p>
+    <a class="btn btn-lg btn-primary" href="/sign up/" role="button">CONTINUE TO REGISTER &raquo;</a>
+  </div>
+</main>
+
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+      
+  </body>
+</html>

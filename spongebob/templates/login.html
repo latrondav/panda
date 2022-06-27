@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>PANDA BUS BOOKING AGENCY - LOGIN</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+
+        <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <script src="{% static 'assets/dist/js/bootstrap.min.js' %}"></script>
+        <script>alert();</script>
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+
+        <link href="{% static 'signin.css' %}" rel="stylesheet">
+    </head>
+    <body class="text-center">
+
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+        <span aria-hidden="true">&times;</span>
+        </div>
+        {% endfor %}
+
+        
+ 
+        <main class="form-signin">
+            <form action="/login/" method="POST">
+            {% csrf_token %}
+                <br>
+                <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
+                <h2>PANDA BUS BOOKING AGENCY</h2>
+                <h3 class="h3 mb-3 fw-normal">LOGIN</h3>
+
+                <div class="form-floating">
+                    <input type="text" id="username" name="username" class="form-control" id="floatingInput" placeholder="Enter your username" required>
+                    <label for="floatingInput">Username</label>
+
+                </div>
+                <br>
+
+                <div class="form-floating">
+                    <input type="password" id="pass1" name="pass1" class="form-control" id="floatingPassword" placeholder="Enter your Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <br>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+
+                <div class=”text”>
+                    <label>Create an account? <a href="/sign up/">Signup here</a></label>
+                </div>
+                <br>
+
+                <button type="submit" class="w-100 btn btn-lg btn-primary">LOGIN</button>
+                <p class="mt-5 mb-3 text-muted">&copy; GROUP1 EVENING CLASS</p>
+            </form>
+        </main>
+    
+        
+    </body>
+</html>

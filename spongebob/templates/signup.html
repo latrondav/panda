@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>PANDA BUS BOOKING AGENCY - SIGNUP</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+
+        <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <script src="{% static 'assets/dist/js/bootstrap.min.js' %}"></script>
+        <script>alert();</script>
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+
+        <link href="{% static 'signin.css' %}" rel="stylesheet">
+    </head>
+    <body class="text-center">
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            <span aria-hidden="true">&times;</span>
+        </div>
+        {% endfor %}
+
+>
+        <main class="form-signin">
+            <form action="/sign up/" method="POST">
+            {% csrf_token %}
+                <br>
+                <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
+                <h2>PANDA BUS BOOKING AGENCY</h2>
+                <h3 class="h3 mb-3 fw-normal">SIGN UP</h3>
+            
+                <div class="form-floating">
+                    <input type="text" id="username" name="username" class="form-control" id="floatingInput" placeholder="Create a username (only letters and numbers)" required>
+                    <label for="floatingInput">Username</label>
+                    <br>
+                </div>
+
+                <div class="form-floating">
+                    <input type="text" id="fname" name="fname" class="form-control" id="floatingInput" placeholder="Enter your First Name" required>
+                    <label for="floatingInput">First_Name</label>
+                    <br>
+                </div>
+
+                <div class="form-floating"> 
+                    <input type="text" id="lname" name="lname" class="form-control" id="floatingInput" placeholder="Enter your Last Name" required>
+                    <label for="floatingInput">Last_Name</label>
+                    <br>
+                </div>
+
+                <div class="form-floating"> 
+                    <input type="email" id="email" name="email" class="form-control" id="floatingInput" placeholder="Enter your Email" required>
+                    <label for="floatingInput">Email</label>
+                    <br>
+                </div>
+
+                <div class="form-floating"> 
+                    <input type="password" id="pass1" name="pass1" class="form-control" id="floatingPassword" placeholder="Create a Password" required>
+                    <label for="floatingPassword">Password</label>
+                    <br>
+                </div>
+
+                <div class="form-floating"> 
+                    <input type="password" id="pass2" name="pass2" class="form-control" id="floatingPassword" placeholder="Confirm your Password" required>
+                    <label for="floatingPassword">Confirm Password</label>
+                    <br>
+                </div>
+
+                <div class=”text”>
+                    <label>Already have an account? <a href="/login/">Login here</a></label>
+                </div>
+                <br>
+
+                <div class=”policy”>
+                    <input type="checkbox" value="I accept all terms & condition"> I accept all terms & condition
+                </div>
+                <br>
+
+                <button type="submit" class="w-100 btn btn-lg btn-primary">SIGN UP</button>
+                <p class="mt-5 mb-3 text-muted">&copy; GROUP1 EVENING CLASS</p>
+            </form>
+        </main>
+    
+
+        
+    </body>
+</html>
