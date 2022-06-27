@@ -32,7 +32,7 @@ def login_page(request):
             return render(request, "welcome.html", {'fname': fname})
         else:
             messages.error(request, "BAD CREDENTIALS")
-            return redirect('/')
+            return redirect('log/')
 
     return render(request, 'login.html')
 
