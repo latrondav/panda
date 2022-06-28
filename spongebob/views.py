@@ -130,3 +130,9 @@ def trinity_home_page(request):
 
 def trinity_book_page(request):
     return render(request, 'trinity_book.html')
+    
+def services_page(request):
+    return render(request, 'services.html')
+
+def contact_us_page(request):
+    return render(request, 'contact_us.html')

@@ -15,4 +15,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate, name= "activate"),
     path('trinity home/', views.trinity_home_page),
     path('trinity book/', views.trinity_book_page),
+    path('services/', views.services_page),
+    path('services/index/', views.home_page),
+    path('contact_us/', views.contact_us_page),
 ]
