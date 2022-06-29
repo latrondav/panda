@@ -70,16 +70,16 @@
                 .background-radial-gradient {
                   background-color: hsl(218, 41%, 15%);
                   background-image: radial-gradient(650px circle at 0% 0%,
-                      hsl(218, 41%, 35%) 15%,
-                      hsl(218, 41%, 30%) 35%,
-                      hsl(218, 41%, 20%) 75%,
-                      hsl(218, 41%, 19%) 80%,
+                      hsl(22, 100%, 50%) 15%,
+                      hsl(22, 100%, 45%) 35%,
+                      hsl(22, 100%, 35%) 75%,
+                      hsl(22, 100%, 34%) 80%,
                       transparent 100%),
                     radial-gradient(1250px circle at 100% 100%,
-                      hsl(218, 41%, 45%) 15%,
-                      hsl(218, 41%, 30%) 35%,
-                      hsl(218, 41%, 20%) 75%,
-                      hsl(218, 41%, 19%) 80%,
+                      hsl(22, 100%, 60%) 15%,
+                      hsl(22, 100%, 45%) 35%,
+                      hsl(22, 100%, 35%) 75%,
+                      hsl(22, 100%, 34%) 80%,
                       transparent 100%);
                 }
             
@@ -110,10 +110,10 @@
 
             <div class="container py-5 h-100">
               <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-10">
-                  <div class="card" style="border-radius: 1rem;">
+                <div class="col col-xl-10 text-center">
+                  <div class="card" style="border-radius: 5rem;">
                     <div class="row g-0">
-                      <div class="col-md-6 col-lg-5 d-none d-md-block" style="border-radius: 5rem 0 0 5rem;">
+                      <div class="col-md-6 col-lg-5 d-none d-md-block" style="border-radius: 1rem 0 0 1rem;">
 
                         <div class="text-center">
                             <h1 class="my-5 display-3 fw-bold ls-tight">
@@ -124,14 +124,13 @@
                               Lorem ipsum dolor sit amet consectetur adipisicing elit.
                               Eveniet, itaque accusantium odio, soluta, corrupti aliquam
                               quibusdam tempora at cupiditate quis eum maiores libero
-                              veritatis? Dicta facilis sint aliquid ipsum atque?
+                            veritatis? Dicta facilis sint aliquid ipsum atque?
                             </p>
                         </div>
                       </div>
 
                       <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-          
                             <main class="form-signin">
                                 <form action="/login/" method="POST">
                                 {% csrf_token %}
@@ -192,7 +191,6 @@
                                       </div>
                                 </form>
                             </main>
-          
                         </div>
                       </div>
                     </div>
@@ -201,11 +199,8 @@
               </div>
             </div>
           </section><!-- End Login -->
-
     </main>
 
-
-    
     <!-- Vendor JS Files -->
   <script src="{% static 'flexor/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'flexor/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
