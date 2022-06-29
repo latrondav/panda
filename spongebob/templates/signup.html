@@ -15,8 +15,8 @@
         {% endif %}
   
     <!-- Favicons -->
-    <link href="{% static 'flexor/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'flexor/img/apple-touch-icon.png" rel="apple-touch-icon' %}">
+    <link href="{% static 'assets/brand/panda.jpg' %}" rel="icon">
+    <link href="{% static 'assests/brand/panda.jpg' %}" rel="icon">
   
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -142,37 +142,37 @@
                                     <h3 class="h3 mb-3 fw-normal"><strong>SIGN UP</strong></h3>
                                 
                                     <div class="form-floating">
-                                        <input type="text" id="username" name="username" class="form-control" id="floatingInput" placeholder="Create a username (only letters and numbers)" required>
+                                        <input type="text" id="username" name="username" class="form-control" style="border-radius: 10rem;" id="floatingInput" placeholder="Create a username (only letters and numbers)" required>
                                         <label for="floatingInput"><strong>Username</strong></label>
                                         <br>
                                     </div>
                     
                                     <div class="form-floating">
-                                        <input type="text" id="fname" name="fname" class="form-control" id="floatingInput" placeholder="Enter your First Name" required>
+                                        <input type="text" id="fname" name="fname" class="form-control" style="border-radius: 10rem;" id="floatingInput" placeholder="Enter your First Name" required>
                                         <label for="floatingInput"><strong>First_Name</strong></label>
                                         <br>
                                     </div>
                     
                                     <div class="form-floating"> 
-                                        <input type="text" id="lname" name="lname" class="form-control" id="floatingInput" placeholder="Enter your Last Name" required>
+                                        <input type="text" id="lname" name="lname" class="form-control" style="border-radius: 10rem;" id="floatingInput" placeholder="Enter your Last Name" required>
                                         <label for="floatingInput"><strong>Last_Name</strong></label>
                                         <br>
                                     </div>
                     
                                     <div class="form-floating"> 
-                                        <input type="email" id="email" name="email" class="form-control" id="floatingInput" placeholder="Enter your Email" required>
+                                        <input type="email" id="email" name="email" class="form-control" style="border-radius: 10rem;" id="floatingInput" placeholder="Enter your Email" required>
                                         <label for="floatingInput"><strong>Email</strong></label>
                                         <br>
                                     </div>
                     
                                     <div class="form-floating"> 
-                                        <input type="password" id="pass1" name="pass1" class="form-control" id="floatingPassword" placeholder="Create a Password" required>
+                                        <input type="password" id="pass1" name="pass1" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="Create a Password" required>
                                         <label for="floatingPassword"><strong>Password</strong></label>
                                         <br>
                                     </div>
                     
                                     <div class="form-floating"> 
-                                        <input type="password" id="pass2" name="pass2" class="form-control" id="floatingPassword" placeholder="Confirm your Password" required>
+                                        <input type="password" id="pass2" name="pass2" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="Confirm your Password" required>
                                         <label for="floatingPassword"><strong>Confirm Password</strong></label>
                                         <br>
                                     </div>
@@ -186,29 +186,18 @@
                                         <input type="checkbox" value="I accept all terms & condition"><strong>I accept all terms & condition</strong>
                                     </div>
                                     <br>
-                                    </div>>
+                                    </div>
                     
-                                    <button type="submit" class="w-100 btn btn-lg btn-primary"><strong>SIGN UP</strong></button>
+                                    <button type="submit" class="w-100 btn btn-lg btn-primary" style="border-radius: 10rem;"><strong>SIGN UP</strong></button>
                                     
                                     <div class="text-center">
                                         <p><strong>Not a member?</strong><a href="/sign up/"><strong>Register</strong></a></p>
                                         <p><strong>or sign up with:</strong></p>
   
-                                        <button type="button" class="btn btn-link btn-floating mx-1">
-                                          <i class="fab fa-facebook-f"></i>
+                                        <button type="button" class="btn btn-primary btn-floating " style="border-radius: 10rem;">
+                                          <i class="bi bi-google"></i>
                                         </button>
-                                      
-                                        <button type="button" class="btn btn-link btn-floating mx-1">
-                                          <i class="fab fa-google"></i>
-                                        </button>
-                                      
-                                         <button type="button" class="btn btn-link btn-floating mx-1">
-                                          <i class="fab fa-twitter"></i>
-                                        </button>
-                                      
-                                        <button type="button" class="btn btn-link btn-floating mx-1">
-                                          <i class="fab fa-github"></i>
-                                        </button>
+
                                       </div>
                                 </form>
                             </main>

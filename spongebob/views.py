@@ -137,3 +137,6 @@ def services_page(request):
 
 def contact_us_page(request):
     return render(request, 'contact_us.html')
+
+def team_page(request):
+    return render(request, 'team.html')
