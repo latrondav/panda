@@ -7,6 +7,12 @@
         <title>PANDA</title>
         {% load static %}
 
+        {% if messages %}
+        {% for message in messages %}
+            <script> alert('{{message}}')</script>
+        {% endfor %}
+        {% endif %}
+
         <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <style>
@@ -30,17 +36,6 @@
     <link href="{% static 'product.css' %}" rel="stylesheet">
     </head>
     <body>
-
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            <strong>Message:</strong> {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-            <span aria-hidden="true">&times;</span>
-        </div>
-        {% endfor %}
-
-        
-
         {% if user.is_authenticated %}
         <header class="site-header sticky-top py-1">
             <nav class="container d-flex flex-column flex-md-row justify-content-between">

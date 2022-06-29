@@ -25,6 +25,7 @@ def login_page(request):
         pass1 = request.POST['pass1']
 
         user = authenticate(username=username, password=pass1)
+        messages.success(request, "LOGGED IN SUCCESSFULLY!")
 
         if user is not None:
             login(request, user)
@@ -47,23 +48,23 @@ def signup_page(request):
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please use some other username, thank you.")
-            return redirect('sign up/')
+            return redirect('sign/')
 
         if User.objects.filter(email=email):
             messages.error(request, "Email already registered!")
-            return redirect('sign up/')
+            return redirect('sign/')
 
         if len(username)>10:
             messages.error(request, "Username must be under 10 characters")
-            return redirect('sign up/')
+            return redirect('sign/')
 
         if pass1 != pass2:
             messages.error(request, "Passwords didn't match")
-            return redirect('sign up/')
+            return redirect('sign/')
 
         if not username.isalnum():
             messages.error(request, "Username must be Alpha-Numeric!")
-            return redirect('sign up/')
+            return redirect('sign/')
 
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
