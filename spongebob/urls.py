@@ -19,4 +19,5 @@ urlpatterns = [
     path('services/', views.services_page),
     path('services/index/', views.home_page),
     path('contact_us/', views.contact_us_page),
+    path('team/', views.team_page),
 ]
