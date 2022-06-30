@@ -8,9 +8,9 @@
         {% load static %}
 
         {% if messages %}
-        {% for message in messages %}
-            <script> alert('{{message}}')</script>
-        {% endfor %}
+            {% for message in messages %}
+                <script> alert('{{message}}')</script>
+            {% endfor %}
         {% endif %}
 
         <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">

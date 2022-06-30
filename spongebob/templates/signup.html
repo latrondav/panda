@@ -1,67 +1,13 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <title>PANDA BUS BOOKING AGENCY - HOME</title>
-    {% load static %}
-    
-        {% if messages %}
-            {% for message in messages %}
-                <script> alert('{{message}}')</script>
-            {% endfor %}
-        {% endif %}
   
-    <!-- Favicons -->
-    <link href="{% static 'assets/brand/panda.jpg' %}" rel="icon">
-    <link href="{% static 'assests/brand/panda.jpg' %}" rel="icon">
-  
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
-    <!-- Vendor CSS Files -->
-    <link href="{% static 'flexor/vendor/aos/aos.css' %}" rel="stylesheet">
-    <link href="{% static 'flexor/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'flexor/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'flexor/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'flexor/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'flexor/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-  
-    <!-- Template Main CSS File -->
-    <link href="{% static 'flexor/css/style.css' %}" rel="stylesheet">
-  
-    
-  </head>
+  {% load static %}
+
+  {% include 'head.html' %}
 
   <body>
     
- <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <h1><a href="index.html"><strong>PANDA</strong></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link  active" href="index/"><strong>Home</strong></a></li>
-          <li><a class="nav-link " href="services/"><strong>Services</strong></a></li>
-          <li><a class="nav-link " href="contact_us/"><strong>Contact_Us</strong></a></li>
-          <li><a class="nav-link " href="team/"><strong>Team</strong></a></li>
-          <li><a class="nav-link " href="login/"><strong>Login</strong></a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
-   
+    {% include 'headerb4login.html' %}
 
     <main id="main">
 <!-- ======= Login ======= -->
@@ -195,9 +141,8 @@
                                         <p><strong>or sign up with:</strong></p>
   
                                         <button type="button" class="btn btn-primary btn-floating " style="border-radius: 10rem;">
-                                          <i class="bi bi-google"></i>
+                                          <i class="bx bxl-google"></i>
                                         </button>
-
                                       </div>
                                 </form>
                             </main>
@@ -210,6 +155,8 @@
             </div>
           </section><!-- End Login -->
     </main>
+
+    {% include 'footer.html' %}
 
     <!-- Vendor JS Files -->
   <script src="{% static 'flexor/vendor/aos/aos.js' %}"></script>
