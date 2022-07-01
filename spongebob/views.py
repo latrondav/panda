@@ -23,17 +23,25 @@ def login_page(request):
     if request.method == "POST":
         username = request.POST['username']
         pass1 = request.POST['pass1']
-
         user = authenticate(username=username, password=pass1)
-        messages.success(request, "LOGGED IN SUCCESSFULLY!")
+        
+
+        try:
+            remember = request.POST['remember-me']
+            if remember:
+                settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+        except:
+            is_private = False
+            settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
         if user is not None:
             login(request, user)
             fname = user.first_name
+            messages.success(request, "LOGGED IN SUCCESSFULLY!")
             return render(request, "welcome.html", {'fname': fname})
         else:
             messages.error(request, "BAD CREDENTIALS")
-            return redirect('log/')
+            return redirect('/login')
 
     return render(request, 'login.html')
 
@@ -48,23 +56,23 @@ def signup_page(request):
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please use some other username, thank you.")
-            return redirect('sign/')
+            return redirect('/signup')
 
         if User.objects.filter(email=email):
             messages.error(request, "Email already registered!")
-            return redirect('sign/')
+            return redirect('/signup')
 
         if len(username)>10:
             messages.error(request, "Username must be under 10 characters")
-            return redirect('sign/')
+            return redirect('/signup')
 
         if pass1 != pass2:
             messages.error(request, "Passwords didn't match")
-            return redirect('sign/')
+            return redirect('/signup')
 
         if not username.isalnum():
             messages.error(request, "Username must be Alpha-Numeric!")
-            return redirect('sign/')
+            return redirect('/signup')
 
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
@@ -100,7 +108,7 @@ def signup_page(request):
         )
         email.fail_silently = True
         email.send()
-        return redirect('login/')
+        return redirect('/login')
 
 
     return render(request, "signup.html")
@@ -108,7 +116,7 @@ def signup_page(request):
 def signout_page(request):
     logout(request)
     messages.success(request, "LOGGED OUT SUCCESSFULLY!")
-    return redirect('index/')
+    return redirect('/')
 
 def activate(request, uidb64, token):
     try:

@@ -6,6 +6,12 @@
     <title>PANDA BUS BOOKING AGENCY</title>
     
     {% load static %}
+
+    {% if messages %}
+      {% for message in messages %}
+        <script> alert('{{message}}')</script>
+      {% endfor %}
+    {% endif %}
     
     <!-- Favicons -->
     <link href="{% static 'assets/brand/panda.svg' %}" rel="icon">
