@@ -1,3 +1,7 @@
+import email
+from email import message
+import imp
+from unicodedata import name
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -9,6 +13,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_text
+from .models import contact
+from spongebob.models import contact
 from . token import generate_token
 from django.core.mail import EmailMessage, send_mail
 
@@ -144,6 +150,16 @@ def services_page(request):
     return render(request, 'services.html')
 
 def contact_us_page(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        new_message = contact(name = name, email = email, subject = subject, message = message)
+        new_message.save()
+        messages.success(request, "MESSAGE SENT, THANK YOU FOR CONTACTING PANDA")
+      
     return render(request, 'contact_us.html')
 
 def team_page(request):

@@ -47,7 +47,8 @@
   
           <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
             <div class="col-xl-9 col-lg-12 mt-4">
-              <form action="" method="POST" role="form" class="php-email-form">
+              <form action="/contact_us/" method="POST">
+              {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <input type="text" name="name" class="form-control" id="name" style="border-radius: 10rem;" placeholder="NAME" required>
@@ -55,16 +56,17 @@
                   <div class="col-md-6 form-group mt-3 mt-md-0">
                     <input type="email" class="form-control" name="email" id="email" style="border-radius: 10rem;" placeholder="EMAIL" required>
                   </div>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" style="border-radius: 10rem;" placeholder="SUBJECT" required>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" style="border-radius: 10rem;" placeholder="MESSAGE" required></textarea>
-                </div>
-                
-                <div class="form-group mt-3">
-                  <div class="text-center"><button type="submit"><strong>SEND MESSAGE</strong></button></div>
+                  <div class="form-group mt-3">
+                    <input type="text" class="form-control" name="subject" id="subject" style="border-radius: 10rem;" placeholder="SUBJECT" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" style="border-radius: 1rem;" placeholder="MESSAGE" required></textarea>
+                  </div>
+                  <div class="form-group mt-3">
+                    <div class="text-center">
+                      <button type="submit" class=" btn btn-primary" style="border-radius: 10rem;"><strong>SEND MESSAGE</strong></button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
