@@ -86,7 +86,7 @@ def signup_page(request):
         myuser.is_active = False
         myuser.save()
 
-        messages.success(request, "YOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED. \n WE HAVE SENT YOU A CONFIRMATION EMAIL, PLEASE CONFIRM YOUR EMAIL IN ORDER TO ACTIVATE ACCOUNT.")
+        
 
         # WELCOME EMAIL
 
@@ -114,7 +114,7 @@ def signup_page(request):
         )
         email.fail_silently = True
         email.send()
-        messages.success(request, "YOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED. \n WE HAVE SENT YOU A CONFIRMATION EMAIL, PLEASE CONFIRM YOUR EMAIL IN ORDER TO ACTIVATE ACCOUNT.")
+        messages.info(request, "ACCOUNT CREATED, TO LOGIN, PLEASE CHECK YOUR EMAIL TO ACTIVATE ACCOUNT.")
         return redirect('/login')
 
 
