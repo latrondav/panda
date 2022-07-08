@@ -90,7 +90,7 @@ def signup_page(request):
 
         # WELCOME EMAIL
 
-        subject = "Welcome to PANDA - Django Login!!"
+        subject = "WELCOME TO PANDA"
         message = "Hello " + myuser.first_name + "!! \n" + "Welcome to PANDA!! \n Thank you for visiting our website. \n We have also sent you a confirmation email, please confirm your email address inorder to activate you account. \n\n Thanking you, \n LARD, \n PANDA ADMINISTRATOR."
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]
@@ -99,7 +99,7 @@ def signup_page(request):
         # Email Address Confirmation Email
 
         current_site = get_current_site(request)
-        email_subject = "Confirm your email @PANDA - Django Login!"
+        email_subject = "PANDA ACCOUNT CONFIRMATION"
         message2 = render_to_string('email_confirmation.html', {
             'name': myuser.first_name,
             'domain': current_site.domain,

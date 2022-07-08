@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path
 
 from django.contrib.auth import views as auth_views
@@ -5,7 +6,7 @@ from django.contrib.auth import views as auth_views
 from .import views
 
 urlpatterns = [
-    #path('hello/', views.home),
+    #main path
     path('', views.home_page),
     path('login/', views.login_page),
     path('signup/', views.signup_page),
@@ -17,10 +18,13 @@ urlpatterns = [
     path('contact_us/', views.contact_us_page),
     path('team/', views.team_page),
 
-    #forget password path
-    path('resetpassword/', auth_views.PasswordResetView.as_view(), name= "reset_password"),
-    path('resetpasswordsent/', auth_views.PasswordResetDoneView.as_view(), name= "password_reset_done"),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name= "password_reset_confirm"),
-    path('resetpasswordcomplete/', auth_views.PasswordResetCompleteView.as_view(), name= "password_reset_complete"),
+    #reset password path
+    path('resetpasswordform/', auth_views.PasswordResetView.as_view(template_name="password_reset_form.html"), name= "password_reset_form"),
+    path('resetpassworddone/', auth_views.PasswordResetDoneView.as_view(template_name="password_reset_done.html"), name= "password_reset_done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), name= "password_reset_confirm"),
+    path('resetpasswordcomplete/', auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), name= "password_reset_complete"),
 
+    #change password path
+    path('changepasswordform/', auth_views.PasswordChangeView.as_view(), name="password_change_form"),
+    path('changepassworddone/', auth_views.PasswordChangeDoneView.as_view(), name="password_change_done"),
 ]
