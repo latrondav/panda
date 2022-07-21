@@ -3,11 +3,11 @@
   
   {% load static %}
 
-  {% include 'head.html' %}
+  {% include 'includes/head.html' %}
 
   <body>
     
-    {% include 'headerb4login.html' %}
+    {% include 'includes/headerout.html' %}
 
     <main id="main">
 <!-- ======= Login ======= -->
@@ -64,31 +64,50 @@
                         <div class="text-center">
                             <h1 class="my-5 display-3 fw-bold ls-tight">
                             <strong>PASSWORD RESET</strong><br/>
-                            <span class="text-primary"><strong>DONE</strong></span>
+                            <span class="text-primary"><strong>FORM</strong></span>
                             </h1>
                             <p style="color: hsl(217, 10%, 50.8%)">
                                 <strong>
-                                    Your password has been set. 
-                                    You may go ahead or proceed and login now.
-                            </strong>
+                                    Please enter your new password twice so we can verify you typed it in correctly
+                                </strong>
                             </p>
                         </div>
                       </div>
 
                       <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-                            <div class="text-center">
-                                <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
-                                <h2><strong>PANDA BUS BOOKING AGENCY</strong></h2>
-                                <h4 class="h3 mb-3 fw-normal"><strong>PASSWORD RESET DONE</strong></h4>
-                                <h6 class="h3 mb-3 fw-normal"><strong>Proceed to login</strong></h6>
-                            </div>
-
-                            <div class="text-center">
-                                <a type="submit" class="w-100 btn btn-lg btn-primary" style="border-radius: 10rem;" href="/login"><strong>LOGIN</strong></a>
-                            </div>
-                            <br>
-
+                            <main class="form-signin">
+                                <form style="height: auto;"  method="POST">
+                                {% csrf_token %}
+                                    <br>
+                                    <div class="text-center">
+                                        <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
+                                        <h2><strong>PANDA BUS BOOKING AGENCY</strong></h2>
+                                        <h3 class="h3 mb-3 fw-normal"><strong>RESET PASSWORD</strong></h3>
+                                    </div>
+                    
+                    
+                                    <div class="form-floating">
+                                        <input type="password" id="new_password1" name="new_password1" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="New Password" required>
+                                        <label for="floatingPassword"><strong>New Password</strong></label>
+                                    </div>
+                                    <br>
+                    
+                                    
+                                    <div class="form-floating">
+                                        <input type="password" id="new_password2 " name="new_password2" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="Confirm New Password" required>
+                                        <label for="floatingPassword"><strong>Confirm New Password</strong></label>
+                                    </div>
+                                    <br>
+                                        
+                                
+                                    <div class="text-center">
+                                        <button type="submit" class="w-100 btn btn-lg btn-primary" style="border-radius: 10rem;"><strong>SUBMIT</strong></button>
+                                    </div>
+                                    <br>
+                                    
+                                </form>
+                            </main>
                         </div>
                       </div>
                     </div>
@@ -99,7 +118,7 @@
           </section><!-- End Login -->
     </main>
 
-    {% include 'footer.html' %}
+    {% include 'includes/footer.html' %}
 
   </body>
 </html>

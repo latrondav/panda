@@ -139,7 +139,8 @@ def activate(request, uidb64, token):
         messages.success(request, "ACCOUNT HAS BEEN SUCCESSFULLY ACTIVATED, PLEASE LOGIN, THANK YOU.")
         return render(request, 'login.html')
     else:
-        return render(request, 'activation_failed.html')
+        messages.info(request, "ACTIVATION FAILED, PLEASE TRY AGAIN!")
+        return redirect('/signup')
 
 def trinity_home_page(request):
     return render(request, 'trinity_home.html')

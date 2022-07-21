@@ -3,11 +3,11 @@
   
   {% load static %}
 
-  {% include 'head.html' %}
+  {% include 'includes/head.html' %}
 
   <body>
     
-    {% include 'headerb4login.html' %}
+    {% include 'includes/headerout.html' %}
 
     <main id="main">
 <!-- ======= Login ======= -->
@@ -60,54 +60,26 @@
                   <div class="card" style="border-radius: 5rem;">
                     <div class="row g-0">
                       <div class="col-md-6 col-lg-5 d-none d-md-block" style="border-radius: 1rem 0 0 1rem;">
-
                         <div class="text-center">
                             <h1 class="my-5 display-3 fw-bold ls-tight">
                             <strong>PASSWORD RESET</strong><br/>
-                            <span class="text-primary"><strong>FORM</strong></span>
+                            <span class="text-primary"><strong>SENT</strong></span>
                             </h1>
-                            <p style="color: hsl(217, 10%, 50.8%)">
+                            <p style="color: rgb(15, 15, 15)">
                                 <strong>
-                                    Please enter your new password twice so we can verify you typed it in correctly
+                                    We have emailed you instructions for setting your password, 
+                                    if an account exists with your email you entered. 
+                                    You should receive them shortly
                                 </strong>
                             </p>
-                        </div>
-                      </div>
 
-                      <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                        <div class="card-body p-4 p-lg-5 text-black">
-                            <main class="form-signin">
-                                <form style="height: auto;"  method="POST">
-                                {% csrf_token %}
-                                    <br>
-                                    <div class="text-center">
-                                        <img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="72" height="57">
-                                        <h2><strong>PANDA BUS BOOKING AGENCY</strong></h2>
-                                        <h3 class="h3 mb-3 fw-normal"><strong>RESET PASSWORD</strong></h3>
-                                    </div>
-                    
-                    
-                                    <div class="form-floating">
-                                        <input type="password" id="new_password1" name="new_password1" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="New Password" required>
-                                        <label for="floatingPassword"><strong>New Password</strong></label>
-                                    </div>
-                                    <br>
-                    
-                                    
-                                    <div class="form-floating">
-                                        <input type="password" id="new_password2 " name="new_password2" class="form-control" style="border-radius: 10rem;" id="floatingPassword" placeholder="Confirm New Password" required>
-                                        <label for="floatingPassword"><strong>Confirm New Password</strong></label>
-                                    </div>
-                                    <br>
-                                        
-                                
-                                    <div class="text-center">
-                                        <button type="submit" class="w-100 btn btn-lg btn-primary" style="border-radius: 10rem;"><strong>SUBMIT</strong></button>
-                                    </div>
-                                    <br>
-                                    
-                                </form>
-                            </main>
+                            <p style="color: rgb(15, 15, 15)">
+                                <strong>
+                                    If you do not receive an email, 
+                                    please make sure you have entered the email address you registered your account with,
+                                    and also check your spam folder.
+                                </strong>
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -118,7 +90,7 @@
           </section><!-- End Login -->
     </main>
 
-    {% include 'footer.html' %}
+    {% include 'includes/footer.html' %}
 
   </body>
 </html>

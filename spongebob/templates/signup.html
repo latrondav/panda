@@ -3,11 +3,11 @@
   
   {% load static %}
 
-  {% include 'head.html' %}
+  {% include 'includes/head.html' %}
 
   <body>
     
-    {% include 'headerb4login.html' %}
+    {% include 'includes/headerout.html' %}
 
     <main id="main">
 <!-- ======= Login ======= -->
@@ -123,11 +123,6 @@
                                         <br>
                                     </div>
                     
-                                    <div class=”text”>
-                                        <label><strong>Already have an account?</strong><a href="/login/"><strong>Login here</strong></a></label>
-                                    </div>
-                                    <br>
-                    
                                     <div class=”policy”>
                                         <input type="checkbox" value="I accept all terms & condition"><strong>I accept all terms & condition</strong>
                                     </div>
@@ -159,7 +154,7 @@
           </section><!-- End Login -->
     </main>
 
-    {% include 'footer.html' %}
+    {% include 'includes/footer.html' %}
       
   </body>
 </html>

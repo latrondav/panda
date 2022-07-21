@@ -1,5 +1,6 @@
-{% autoescape off %}
 
-Activation Failed, Please try again!
-
-{% autoescape %}
+{% if messages %}
+    {% for message in messages %}
+        <script> alert('{{message}}')</script>
+    {% endfor %}
+{% endif %}
