@@ -82,7 +82,7 @@ def signup_page(request):
 
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
-        myuser.last_Name = lname
+        myuser.last_name = lname
         myuser.is_active = False
         myuser.save()
 
