@@ -43,7 +43,7 @@ def login_page(request):
             login(request, user)
             fname = user.first_name
             messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            return render(request, "welcome.html", {'fname': fname})
+            return render(request, "index.html", {'fname': fname})
         else:
             messages.error(request, "BAD CREDENTIALS")
             return redirect('/login')
@@ -119,6 +119,13 @@ def signup_page(request):
 
     return render(request, "signup.html")
 
+def userview(request):
+    context = {
+        'user' : request.user,
+        
+    }
+    return render(request, 'home.html', context)
+
 def signout_page(request):
     logout(request)
     messages.success(request, "LOGGED OUT SUCCESSFULLY!")
@@ -141,10 +148,7 @@ def activate(request, uidb64, token):
         messages.info(request, "ACTIVATION FAILED, PLEASE TRY AGAIN!")
         return redirect('/signup')
 
-def trinity_home_page(request):
-    return render(request, 'trinity_home.html')
 
-def trinity_book_page(request):
     return render(request, 'trinity_book.html')
     
 def services_page(request):

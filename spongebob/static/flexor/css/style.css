@@ -351,10 +351,12 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   right: 0;
+  
 }
 .hero .container {
   z-index: 2;
 }
+
 .hero h1 {
   margin: 0 0 10px 0;
   font-size: 48px;
@@ -382,15 +384,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 1px;
-  display: inline-block;
   transition: 0.5s;
   margin-left: -10px;
   padding: 8px 26px 8px 26px;
   color: #fff;
   background: #584b48;
-  border-radius: 0 50px 50px 0;
-  position: relative;
-  z-index: 4;
+  border-radius: 50px 50px 50px 50px;
+  
 }
 .hero .btn-get-started:hover {
   background: #ff5821;
