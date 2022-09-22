@@ -28,6 +28,7 @@
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us">
           <div class="container">
+
             <div class="row">
               <div class="col-xl col-lg" data-aos="fade-up">
                 <div class="content">
@@ -42,31 +43,67 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='text' class="form-control" id="arrivaldates" name="arrivaldates" placeholder="FROM"/>
+                                  <select class="form-control" id="departfrom" name="departfrom">
+                                    <option value="FROM">FROM</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select> 
                                 </div>
                               </div><br>
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='text' class="form-control" id="departuredates" name="departuredates"placeholder="TO"/>
+                                  <select class="form-control" id="arriveto" name="arriveto">
+                                    <option value="TO">TO</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" id="arrivaldates" name="arrivaldates" placeholder="DATE"/>
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                </span>
-                                            </div>
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='date' class="form-control" id="departdate" name="departdate" placeholder="DATE"/>
+                                </div>
                               </div><br>
                               <div class="form-group">
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" id="departuredates" name="departuredates"placeholder="TIME"/>
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                </span>
-                                            </div>
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='time' class="form-control" id="departdate" name="departdate" placeholder="DATE"/>   
+                                </div>
                               </div>
                             </div>
                             <div class="col-md-3 text-center">
@@ -79,7 +116,6 @@
                 </div>
               </div>
             </div>
-          </div>
 
             <div class="row">
               <div class="col-xl col-lg d-flex">
@@ -87,32 +123,66 @@
                   <div class="row">
                     <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                       <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-receipt"></i>
-                        <h4><strong>MISSION</strong></h4>
-                        <p><strong>Our mission is to simplify consumer needs and set the bar for online bus and ticketing systems in East and Central Africa.</strong></p>
+                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
+                        <br>
+                        <h4><strong>LINK  BUS</strong></h4>
+                        <p>
+                          <strong>
+                            <ul class="list-unstyled">
+                              <li>FROM: KAMPALA</li>
+                              <li>TO: FORTPORTAL</li>
+                              <li>DEPARTURE DATE: 01/10/2022</li>
+                              <li>DEPARTURE TIME: 09:00</li>
+                            </ul>
+                          </strong>
+                        </p>
+                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
                       </div>
                     </div>
                     <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                       <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-cube-alt"></i>
-                        <h4><strong>VISION</strong></h4>
-                        <p><strong>Our Vision is to maximize customer satisfaction while increasing revenue using the PANDA online bus booking and ticketing system.</strong></p>
+                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
+                        <br>
+                        <h4><strong>LINK  BUS</strong></h4>
+                        <p>
+                          <strong>
+                            <ul class="list-unstyled">
+                              <li>FROM: KAMPALA</li>
+                              <li>TO: FORTPORTAL</li>
+                              <li>DEPARTURE DATE: 01/10/2022</li>
+                              <li>DEPARTURE TIME: 09:00</li>
+                            </ul>
+                          </strong>
+                        </p>
+                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
                       </div>
                     </div>
                     <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                       <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-images"></i>
-                        <h4><strong>CORE VALUES</strong></h4>
-                        <p><strong>Passion.</strong></p>
-                        <p><strong>Fairness.</strong></p>
-                        <p><strong>Teamwork.</strong></p>
-                        <p><strong>Diversity and Inclusion.</strong></p>
+                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
+                        <br>
+                        <h4><strong>LINK  BUS</strong></h4>
+                        <p>
+                          <strong>
+                            <ul class="list-unstyled">
+                              <li>FROM: KAMPALA</li>
+                              <li>TO: FORTPORTAL</li>
+                              <li>DEPARTURE DATE: 01/10/2022</li>
+                              <li>DEPARTURE TIME: 09:00</li>
+                            </ul>
+                          </strong>
+                        </p>
+                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+          </div>
+
+            
 
           </div>
         </section><!-- End Why Us Section -->
