@@ -22,7 +22,8 @@ from django.core.mail import EmailMessage, send_mail
     #return HttpResponse("Hello World")
 
 def home_page(request):
-    return render(request, 'index.html')
+    busobj = buses.objects.raw('select * from spongebob_buses')
+    return render(request, 'index.html', {'buses':busobj})
 
 def login_page(request):
     if request.method == "POST":
@@ -122,9 +123,8 @@ def signup_page(request):
 def userview(request):
     context = {
         'user' : request.user,
-        
     }
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 def signout_page(request):
     logout(request)
@@ -178,9 +178,9 @@ def bus_search(request):
         bustime = request.POST['bustime']
 
         bussearchobj = buses.objects.raw('select * from spongebob_buses where busfrom ="'+busfrom+'" and busto = "'+busto+'" and busdate = "'+busdate+'" and bustime = "'+bustime+'" ')
-        return render(request, 'index.html', {"buses":bussearchobj})
+        return render(request, 'index.html', {'buses':bussearchobj})
     else:
         busobj = buses.objects.raw('select * from spongebob_buses')
-        return render(request, 'index.html', {"buses":busobj})
+        return render(request, 'index.html', {'buses':busobj})
         
-    return render(request, 'index.html')
+    
