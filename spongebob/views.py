@@ -13,7 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
-from . models import contact
+from . models import contact, buses
 from . token import generate_token
 from django.core.mail import EmailMessage, send_mail
 
@@ -169,3 +169,18 @@ def contact_us_page(request):
 
 def team_page(request):
     return render(request, 'team.html')
+
+def bus_search(request):
+    if request.method == "POST":
+        busfrom = request.POST['busfrom']
+        busto = request.POST['busto']
+        busdate = request.POST['busdate']
+        bustime = request.POST['bustime']
+
+        bussearchobj = buses.objects.raw('select * from spongebob_buses where busfrom ="'+busfrom+'" and busto = "'+busto+'" and busdate = "'+busdate+'" and bustime = "'+bustime+'" ')
+        return render(request, 'index.html', {"buses":bussearchobj})
+    else:
+        busobj = buses.objects.raw('select * from spongebob_buses')
+        return render(request, 'index.html', {"buses":busobj})
+        
+    return render(request, 'index.html')

@@ -43,7 +43,7 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <select class="form-control" id="departfrom" name="departfrom">
+                                  <select class="form-control" id="busfrom" name="busfrom">
                                     <option value="FROM">FROM</option>
                                     <option value="KAMPALA">KAMPALA</option>
                                     <option value="FORTPORTAL">FORTPORTAL</option>
@@ -69,7 +69,7 @@
                               </div><br>
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <select class="form-control" id="arriveto" name="arriveto">
+                                  <select class="form-control" id="busto" name="busto">
                                     <option value="TO">TO</option>
                                     <option value="KAMPALA">KAMPALA</option>
                                     <option value="FORTPORTAL">FORTPORTAL</option>
@@ -97,12 +97,12 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='date' class="form-control" id="departdate" name="departdate" placeholder="DATE"/>
+                                  <input type='date' class="form-control" id="busdate" name="busdate" placeholder="DATE"/>
                                 </div>
                               </div><br>
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='time' class="form-control" id="departdate" name="departdate" placeholder="DATE"/>   
+                                  <input type='time' class="form-control" id="bustime" name="bustime" placeholder="TIME"/>   
                                 </div>
                               </div>
                             </div>
@@ -121,7 +121,28 @@
               <div class="col-xl col-lg d-flex">
                 <div class="icon-boxes d-flex flex-column justify-content-center">
                   <div class="row">
-                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    {% for bus in buses %}
+                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box mt-4 mt-xl-0">
+                          
+                          <img src="{{ bus.busimage.url }}" class="img-fluid" alt=""><br>
+                          <br>
+                          <h4><strong>{{ bus.busname }}</strong></h4>
+                          <p>
+                            <strong>
+                              <ul class="list-unstyled">
+                                <li>FROM: {{ bus.busfrom }}</li>
+                                <li>TO: {{ bus.busto }}</li>
+                                <li>DEPARTURE DATE: {{ bus.busdate }}</li>
+                                <li>DEPARTURE TIME: {{ bus.bustime }}</li>
+                              </ul>
+                            </strong>
+                          </p>
+                          <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                       <div class="icon-box mt-4 mt-xl-0">
                         <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
                         <br>
@@ -139,7 +160,7 @@
                         <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
                       </div>
                     </div>
-                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                       <div class="icon-box mt-4 mt-xl-0">
                         <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
                         <br>

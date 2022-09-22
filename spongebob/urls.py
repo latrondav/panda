@@ -16,6 +16,7 @@ urlpatterns = [
     path('services/', views.services_page),
     path('contact_us/', views.contact_us_page),
     path('team/', views.team_page),
+    path('bussearch/', views.bus_search),
 
     #reset password path
     path('resetpasswordform/', auth_views.PasswordResetView.as_view(template_name="password_mgt/pw_reset_form.html"), name= "password_reset_form"),
