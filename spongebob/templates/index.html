@@ -28,7 +28,6 @@
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us">
           <div class="container">
-
             <div class="row">
               <div class="col-xl col-lg" data-aos="fade-up">
                 <div class="content">
@@ -37,7 +36,7 @@
                       <h2>BUS<br>SEARCH</h2>
                     </div>
                     <div class="col-md-9">
-                      <form action="/accomodation/" method="POST">
+                      <form action="/bussearch/" method="POST">
                         {% csrf_token %}
                           <div class="row">
                             <div class="col-md-3">
@@ -107,7 +106,7 @@
                               </div>
                             </div>
                             <div class="col-md-3 text-center">
-                              <a href="" class="more-btn"><strong>SEARCH</strong></a>
+                              <button type="submit" class="more-btn"><strong>SEARCH</strong></button>
                             </div>
                           </div>
                       </form>
@@ -122,9 +121,8 @@
                 <div class="icon-boxes d-flex flex-column justify-content-center">
                   <div class="row">
                     {% for bus in buses %}
-                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                      <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box mt-4 mt-xl-0">
-                          
                           <img src="{{ bus.busimage.url }}" class="img-fluid" alt=""><br>
                           <br>
                           <h4><strong>{{ bus.busname }}</strong></h4>
@@ -142,69 +140,10 @@
                         </div>
                       </div>
                     {% endfor %}
-                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
-                        <br>
-                        <h4><strong>LINK  BUS</strong></h4>
-                        <p>
-                          <strong>
-                            <ul class="list-unstyled">
-                              <li>FROM: KAMPALA</li>
-                              <li>TO: FORTPORTAL</li>
-                              <li>DEPARTURE DATE: 01/10/2022</li>
-                              <li>DEPARTURE TIME: 09:00</li>
-                            </ul>
-                          </strong>
-                        </p>
-                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
-                      </div>
-                    </div>
-                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
-                        <br>
-                        <h4><strong>LINK  BUS</strong></h4>
-                        <p>
-                          <strong>
-                            <ul class="list-unstyled">
-                              <li>FROM: KAMPALA</li>
-                              <li>TO: FORTPORTAL</li>
-                              <li>DEPARTURE DATE: 01/10/2022</li>
-                              <li>DEPARTURE TIME: 09:00</li>
-                            </ul>
-                          </strong>
-                        </p>
-                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
-                      </div>
-                    </div>
-                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <img src="{% static 'flexor/img/team/dukes.jpg' %}" class="img-fluid" alt=""><br>
-                        <br>
-                        <h4><strong>LINK  BUS</strong></h4>
-                        <p>
-                          <strong>
-                            <ul class="list-unstyled">
-                              <li>FROM: KAMPALA</li>
-                              <li>TO: FORTPORTAL</li>
-                              <li>DEPARTURE DATE: 01/10/2022</li>
-                              <li>DEPARTURE TIME: 09:00</li>
-                            </ul>
-                          </strong>
-                        </p>
-                        <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-          </div>
-
-            
-
           </div>
         </section><!-- End Why Us Section -->
       </main>
