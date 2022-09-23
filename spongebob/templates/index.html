@@ -122,9 +122,11 @@
                   <div class="row">
                     {% for bus in buses %}
                       <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box mt-4 mt-xl-0">
-                          <img src="{{ bus.busimage.url }}" class="img-fluid" alt=""><br>
+                        <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
+                          {% if bus.busimage %}
+                          <img src="{{ bus.busimage.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
                           <br>
+                          {% endif %}
                           <h4><strong>{{ bus.busname }}</strong></h4>
                           <p>
                             <strong>

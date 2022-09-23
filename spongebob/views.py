@@ -44,7 +44,8 @@ def login_page(request):
             login(request, user)
             fname = user.first_name
             messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            return render(request, "index.html", {'fname': fname})
+            busobj = buses.objects.raw('select * from spongebob_buses')
+            return render(request, "index.html", {'fname': fname, 'buses':busobj})
         else:
             messages.error(request, "BAD CREDENTIALS")
             return redirect('/login')
