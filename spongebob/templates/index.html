@@ -30,7 +30,7 @@
           <div class="container">
             <div class="row">
               <div class="col-xl col-lg" data-aos="fade-up">
-                <div class="content">
+                <div class="content bg-bussearch">
                   <div class="row">
                     <div class="col-md-3">
                       <h2>BUS<br>SEARCH</h2>
@@ -119,7 +119,9 @@
             <div class="row">
               <div class="col-xl col-lg d-flex">
                 <div class="icon-boxes d-flex flex-column justify-content-center">
-                  <div class="row">
+                  <form action="/bookbus/" method="POST">
+                  {% csrf_token %}
+                    <div class="row">
                     {% for bus in buses %}
                       <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
@@ -128,21 +130,37 @@
                           <br>
                           {% endif %}
                           <h4><strong>{{ bus.busname }}</strong></h4>
+                          <h6><strong><input readonly class="bg-white text-center" name="bus_id" value="{{ bus.id }}"></strong></h6>
                           <p>
                             <strong>
                               <ul class="list-unstyled">
+                                <li>NUMBER PLATE: {{ bus.busnumplate }}</li>
                                 <li>FROM: {{ bus.busfrom }}</li>
                                 <li>TO: {{ bus.busto }}</li>
+                                <li>AVAILABLE SEATS: {{ bus.busremseats }}</li>
+                                <li>PRICE: UGX {{ bus.busprice }}</li>
                                 <li>DEPARTURE DATE: {{ bus.busdate }}</li>
                                 <li>DEPARTURE TIME: {{ bus.bustime }}</li>
                               </ul>
                             </strong>
                           </p>
-                          <button  class="btn-primary" style="border-radius: 25px;"><strong> BOOK NOW </strong></button>
+                          <button type="submit"
+                          class=" btn {% if bus.busremseats == 0 %} btn-secondary {% else %} btn-primary {% endif %} " 
+                          style="border-radius: 25px;" 
+                          {% if bus.busremseats == 0 %} value="FULLY BOOKED" disabled {% endif %}>
+                          <strong>
+                            {% if bus.busremseats == 0 %}
+                              FULLY BOOKED
+                            {% else %}
+                              BOOK NOW
+                            {% endif %}
+                          </strong>
+                          </button>
                         </div>
                       </div>
                     {% endfor %}
-                  </div>
+                    </div>
+                </form>
                 </div>
               </div>
             </div>

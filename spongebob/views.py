@@ -15,6 +15,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from . models import contact, buses
 from . token import generate_token
+from .forms import BookBusForm
 from django.core.mail import EmailMessage, send_mail
 
 # Create your views here.
@@ -184,4 +185,28 @@ def bus_search(request):
         busobj = buses.objects.raw('select * from spongebob_buses')
         return render(request, 'index.html', {'buses':busobj})
         
+def bus_book(request, *args, **kwargs):
+    if request.method == 'POST':
+        busId = request.POST["bus_id"]
+        bus_creation=BookBusForm()
+
+        bus_name_id = buses.objects.get(id=busId)
+        bus_seats = bus_name_id.no_of_seats
+        busSeats = int(bus_seats)
+        new_dict = {val:0 for val in range(busSeats)}
+
+        if buses.objects.filter(id=busId).exists():
+            Bus = buses.objects.filter(id=busId).first()
+            temp = Bus.bookedseats.seats
+            seats = temp.split(',')
+            seats.pop()
+            i = 0
+            for i in range(len(seats)):
+                seat = seats[i]
+                temp = int(seat)
+                new_dict[temp] = 1
+            return render(request, 'book_bus.html', {'Bus':bus_creation, 'busId':busId, 'seats':new_dict})
+        else:
+            return render(request, 'book_bus.html', {'Bus':bus_creation, 'busId':busId, 'seats':new_dict})
     
+    return render(request, 'book_bus.html')
