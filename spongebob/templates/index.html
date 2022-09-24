@@ -42,7 +42,7 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <select class="form-control" id="busfrom" name="busfrom">
+                                  <select class="form-control" id="source" name="source">
                                     <option value="FROM">FROM</option>
                                     <option value="KAMPALA">KAMPALA</option>
                                     <option value="FORTPORTAL">FORTPORTAL</option>
@@ -68,7 +68,7 @@
                               </div><br>
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <select class="form-control" id="busto" name="busto">
+                                  <select class="form-control" id="destination" name="destination">
                                     <option value="TO">TO</option>
                                     <option value="KAMPALA">KAMPALA</option>
                                     <option value="FORTPORTAL">FORTPORTAL</option>
@@ -96,12 +96,12 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='date' class="form-control" id="busdate" name="busdate" placeholder="DATE"/>
+                                  <input type='date' class="form-control" id="date" name="date" placeholder="DATE"/>
                                 </div>
                               </div><br>
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
-                                  <input type='time' class="form-control" id="bustime" name="bustime" placeholder="TIME"/>   
+                                  <input type='time' class="form-control" id="departure_time" name="departure_time" placeholder="TIME"/>   
                                 </div>
                               </div>
                             </div>
@@ -122,34 +122,34 @@
                   <form action="/busbook/" method="POST">
                   {% csrf_token %}
                     <div class="row">
-                    {% for bus in buses %}
+                    {% for bus in Bus %}
                       <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
-                          {% if bus.busimage %}
-                          <img src="{{ bus.busimage.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
+                          {% if bus.image %}
+                          <img src="{{ bus.image.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
                           <br>
                           {% endif %}
-                          <h4><strong>{{ bus.busname }}</strong></h4>
+                          <h4><strong>{{ bus.name }}</strong></h4>
                           <h6><strong><input readonly class="bg-white text-center" name="bus_id" value="{{ bus.id }}"></strong></h6>
                           <p>
                             <strong>
                               <ul class="list-unstyled">
-                                <li>NUMBER PLATE: {{ bus.busnumplate }}</li>
-                                <li>FROM: {{ bus.busfrom }}</li>
-                                <li>TO: {{ bus.busto }}</li>
-                                <li>AVAILABLE SEATS: {{ bus.busremseats }}</li>
-                                <li>PRICE: UGX {{ bus.busprice }}</li>
-                                <li>DEPARTURE DATE: {{ bus.busdate }}</li>
-                                <li>DEPARTURE TIME: {{ bus.bustime }}</li>
+                                <li>NUMBER PLATE: {{ bus.number_plate }}</li>
+                                <li>FROM: {{ bus.source }}</li>
+                                <li>TO: {{ bus.destination }}</li>
+                                <li>AVAILABLE SEATS: {{ bus.remaining_seats }}</li>
+                                <li>PRICE: UGX {{ bus.price }}</li>
+                                <li>DEPARTURE DATE: {{ bus.date }}</li>
+                                <li>DEPARTURE TIME: {{ bus.departure_time }}</li>
                               </ul>
                             </strong>
                           </p>
                           <button type="submit"
-                          class=" btn {% if bus.busremseats == 0 %} btn-secondary {% else %} btn-primary {% endif %} " 
+                          class=" btn {% if bus.remaining_seats == 0 %} btn-secondary {% else %} btn-primary {% endif %} " 
                           style="border-radius: 25px;" 
-                          {% if bus.busremseats == 0 %} value="FULLY BOOKED" disabled {% endif %}>
+                          {% if bus.remaining_seats == 0 %} value="FULLY BOOKED" disabled {% endif %}>
                           <strong>
-                            {% if bus.busremseats == 0 %}
+                            {% if bus.remaining_seats == 0 %}
                               FULLY BOOKED
                             {% else %}
                               BOOK NOW

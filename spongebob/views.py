@@ -13,7 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
-from . models import contact, buses
+from . models import Contact, Bus
 from . token import generate_token
 from .forms import BookBusForm
 from django.core.mail import EmailMessage, send_mail
@@ -23,8 +23,8 @@ from django.core.mail import EmailMessage, send_mail
     #return HttpResponse("Hello World")
 
 def home_page(request):
-    busobj = buses.objects.raw('select * from spongebob_buses')
-    return render(request, 'index.html', {'buses':busobj})
+    busobj = Bus.objects.all()
+    return render(request, 'index.html', {'Bus':busobj})
 
 def login_page(request):
     if request.method == "POST":
@@ -45,8 +45,8 @@ def login_page(request):
             login(request, user)
             fname = user.first_name
             messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            busobj = buses.objects.raw('select * from spongebob_buses')
-            return render(request, "index.html", {'fname': fname, 'buses':busobj})
+            busobj = Bus.objects.all()
+            return render(request, "index.html", {'fname': fname, 'Bus':busobj})
         else:
             messages.error(request, "BAD CREDENTIALS")
             return redirect('/login')
@@ -163,7 +163,7 @@ def contact_us_page(request):
         subject = request.POST['subject']
         message = request.POST['message']
 
-        new_message = contact(name = name, email = email, subject = subject, message = message)
+        new_message = Contact(name = name, email = email, subject = subject, message = message)
         new_message.save()
         messages.success(request, "MESSAGE SENT, THANK YOU FOR CONTACTING PANDA")
       
@@ -174,39 +174,39 @@ def team_page(request):
 
 def bus_search(request):
     if request.method == "POST":
-        busfrom = request.POST['busfrom']
-        busto = request.POST['busto']
-        busdate = request.POST['busdate']
-        bustime = request.POST['bustime']
+        source = request.POST['source']
+        destination = request.POST['destination']
+        date = request.POST['date']
+        departure_time = request.POST['bustime']
 
-        bussearchobj = buses.objects.raw('select * from spongebob_buses where busfrom ="'+busfrom+'" and busto = "'+busto+'" and busdate = "'+busdate+'" and bustime = "'+bustime+'" ')
-        return render(request, 'index.html', {'buses':bussearchobj})
+        bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date)
+        return render(request, 'index.html', {'Bus':bussearchobj})
     else:
-        busobj = buses.objects.raw('select * from spongebob_buses')
-        return render(request, 'index.html', {'buses':busobj})
+        busobj = Bus.objects.all()
+        return render(request, 'index.html', {'Bus':busobj})
         
 def bus_book(request, *args, **kwargs):
     if request.method == 'POST':
-        busId = request.POST["bus_id"]
+        busId=request.POST["bus_id"]
         bus_creation=BookBusForm()
+        
+        bus_name_id=Bus.objects.get(id=busId)
+        bus_seats=bus_name_id.no_of_seats
+        busSeats=int(bus_seats)
+        new_dict={val:0 for val in range(busSeats)}
 
-        bus_name_id = buses.objects.get(id=busId)
-        bus_seats = bus_name_id.busnoofseats
-        busSeats = int(bus_seats)
-        new_dict = {val:0 for val in range(busSeats)}
-
-        if buses.objects.filter(id=busId).exists():
-            Bus = buses.objects.filter(id=busId).first()
-            temp = Bus.bookedseats.seats
-            seats = temp.split(',')
+        if Bus.objects.filter(id=busId).exists():
+            bus=Bus.objects.filter(id=busId).first()
+            temp =  bus.bookedseats.seats
+            seats=temp.split(',')
             seats.pop()
-            i = 0
+            i=0
             for i in range(len(seats)):
-                seat = seats[i]
-                temp = int(seat)
-                new_dict[temp] = 1
-            return render(request, 'book_bus.html', {'Bus':bus_creation, 'busId':busId, 'seats':new_dict})
+                    seat=seats[i]
+                    temp=int(seat)
+                    new_dict[temp]=1
+            return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
         else:
-            return render(request, 'book_bus.html', {'Bus':bus_creation, 'busId':busId, 'seats':new_dict})
+            return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
     
     return render(request, 'book_bus.html')

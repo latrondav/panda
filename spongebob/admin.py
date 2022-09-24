@@ -1,9 +1,10 @@
 from django.contrib import admin
-from spongebob.models import bookbus, contact, buses, bookedseats
+from spongebob.models import BookBus, Contact, Bus, BookedSeats, BusBooking
 
 # Register your models here.
 
-admin.site.register(contact)
-admin.site.register(buses)
-admin.site.register(bookbus)
-admin.site.register(bookedseats)
+admin.site.register(Contact)
+admin.site.register(Bus)
+admin.site.register(BookBus)
+admin.site.register(BookedSeats)
+admin.site.register(BusBooking)
