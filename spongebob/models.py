@@ -30,8 +30,10 @@ class buses(models.Model):
     def __str__(self):
         return str(self.busname)
 
-class BookBus(models.Model):
-    no_of_seats = models.IntegerField()
+        
+
+class bookbus(models.Model):
+    busnoofseats = models.IntegerField()
     seat_no = models.IntegerField()
     total_price = models.IntegerField()
     phone_number = models.IntegerField()
@@ -39,3 +41,12 @@ class BookBus(models.Model):
 
     def __str__():
         return str(User)
+
+class bookedseats(models.Model):
+    bus = models.OneToOneField(buses, on_delete=models.CASCADE)
+    seats = models.CharField(max_length=200, default='0')
+
+    def __str__(self):
+        return str(self.bus)
+
+   

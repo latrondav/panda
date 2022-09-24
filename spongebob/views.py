@@ -191,7 +191,7 @@ def bus_book(request, *args, **kwargs):
         bus_creation=BookBusForm()
 
         bus_name_id = buses.objects.get(id=busId)
-        bus_seats = bus_name_id.no_of_seats
+        bus_seats = bus_name_id.busnoofseats
         busSeats = int(bus_seats)
         new_dict = {val:0 for val in range(busSeats)}
 
