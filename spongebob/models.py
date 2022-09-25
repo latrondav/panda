@@ -24,7 +24,7 @@ class Bus(models.Model):
     destination = models.CharField(max_length=100)
     no_of_seats = models.DecimalField(decimal_places=0, max_digits=2)
     remaining_seats = models.DecimalField(decimal_places=0, max_digits=2)
-    price = models.DecimalField(decimal_places=2, max_digits=6)
+    price = models.DecimalField(decimal_places=0, max_digits=6)
     date = models.DateField()
     departure_time = models.TimeField()
 

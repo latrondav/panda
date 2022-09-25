@@ -195,18 +195,18 @@ def bus_book(request, *args, **kwargs):
         busSeats=int(bus_seats)
         new_dict={val:0 for val in range(busSeats)}
 
-        if Bus.objects.filter(id=busId).exists():
-            bus=Bus.objects.filter(id=busId).first()
-            temp =  bus.bookedseats.seats
-            seats=temp.split(',')
-            seats.pop()
-            i=0
-            for i in range(len(seats)):
-                    seat=seats[i]
-                    temp=int(seat)
-                    new_dict[temp]=1
-            return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
-        else:
-            return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
+        #if Bus.objects.filter(id=busId).exists():
+            #bus=Bus.objects.filter(id=busId).first()
+            #temp =  bus.bookedseats.seats
+            #seats=temp.split(',')
+            #seats.pop()
+            #i=0
+            #for i in range(len(seats)):
+                    #seat=seats[i]
+                    #temp=int(seat)
+                    #new_dict[temp]=1
+            #return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
+        #else:
+            #return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
     
     return render(request, 'book_bus.html')

@@ -18,11 +18,11 @@
         <h2><strong>BOOK BUS</strong></h2>
         <h4><strong>SELECT A BUS SEAT BELOW</strong></h4>
       </div>
-
-      <div class="row">
+      <form action="/contact_us/" method="POST">
+        <div class="row">
         
         <div class="col-lg-3 col-md-3" data-aos="fade-up">
-            <form action="/contact_us/" method="POST">
+            
                 {% csrf_token %}
                   <div class="row">
                     <div class="form-group mt-3">
@@ -51,46 +51,86 @@
                       </div>
                     </div>
                   </div>
-                </form>
+                
         </div>
 
         <div class="col-lg-9 col-md-9 text-center align-items-center" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <div class="col-lg-6 col-md-3">
-                <div class="row">
+              <div class="row">
                     <div class="col-lg-2 text-center align-items-center" style="margin-right: 30px; margin-left: 30px;">
-                        <img src="availble seat.jpg"><br>
+                        <img src="{% static 'flexor/img/seats/available.png' %}" style="height: 30px; width: 30px;"><br>
                         <strong>SEAT AVAILABLE</strong>
                     </div>
                     <div class="col-lg-2 text-center align-items-cente" style="margin-right: 30px; margin-left: 30px;">
-                        <img src="In Booking.jpg" ><br>
-                        <strong>TO BE BOOKED</strong>
+                        <img src="{% static 'flexor/img/seats/reserve.png' %}" style="height: 30px; width: 30px;" ><br>
+                        <strong>SEAT RESERVE</strong>
                     </div>
                     <div class="col-lg-2 text-center align-items-cente" style="margin-right: 30px; margin-left: 30px;">
-                        <img src="Booked.jpg"><br>
+                        <img src="{% static 'flexor/img/seats/booked.png' %}" style="height: 30px; width: 30px;"><br>
                         <strong>SEAT BOOKED</strong>
                     </div>
-                </div>
-                
-
-                
-
-                
+              </div>
             </div>
             <div class="col-lg-6 col-md-3">
-                <button class="btn btn-danger" style="border-radius: 10rem;"> CLEAR SEATS </button>
+              <button class="btn btn-danger" style="border-radius: 10rem;" onclick="location.reload()"> CLEAR SEATS </button>
             </div>
           </div>
-          <div class="row">seat selection</div>
+
+
+          <div class="row" id="bus-div" style="margin-top: 50px;">
+
+            <div class="col-1">
+              <img src="{% static 'flexor/img/seats/driver.png' %}" alt="Driver"
+                style="height: 30px; width: 30px;">
+              <label for="Driver" class="ml-2">DRIVER</label>
+
+              <img class="align-items-end" src="{% static 'flexor/img/seats/door.png' %}" alt="Bus-door"
+                style="vertical-align:bottom;margin-top:80px;height: 30px; width: 30px;">
+              <label for="Door" class="ml-2">DOOR</label>
+            </div>
+
+            <div class="col-11">
+              {% for seat, val in seats.items %}
+              {% if val >= 1 %}
+              <input class='seat-booked' type="image" disabled style="height: 30px; width: 30px;"
+                src="{% static 'flexor/img/seats/booked.png' %}" id="{{seat}}" value="{{seat}}">
+
+              {% else %}
+              <input type="image" style="height: 30px; width: 30px;" onclick="bookSeat(this.id)"
+                src="{% static 'flexor/img/seats/available.png' %}" id="{{seat}}" value="{{seat}}">
+
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
-        
-
-       
-      </div>
-
+        </div>
+      </form>
     </div>
   </section><!-- End Services Section -->
 </main>
+
+<script>
+  function bookSeat(id) {
+
+    document.getElementById('seat_nos').value += document.getElementById(id).value + ",";
+
+    document.getElementById(id).src = "{% static 'flexor/img/seats/reserve.png' %}";
+    document.getElementById(id).disabled = true;
+
+    var val = document.getElementById("count").value;
+
+    if (val) {
+      val = parseInt(val) + 1;
+      document.getElementById("count").value = val;
+    }
+    else {
+      document.getElementById("count").value = 1;
+    }
+  }
+
+</script>
 
 {% include 'includes/footer.html' %}
   
