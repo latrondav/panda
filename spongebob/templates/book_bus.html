@@ -18,16 +18,14 @@
         <h2><strong>BOOK BUS</strong></h2>
         <h4><strong>SELECT A BUS SEAT BELOW</strong></h4>
       </div>
-      <form action="/contact_us/" method="POST">
+      <form action="" method="POST">
         <div class="row">
-        
         <div class="col-lg-3 col-md-3" data-aos="fade-up">
-            
                 {% csrf_token %}
                   <div class="row">
                     <div class="form-group mt-3">
                         <label>Bus Id:</label>
-                        <input readonly type="text" name="bus_id" class="form-control" id="bus_id" value="{{ busId }}" style="border-radius: 10rem;">
+                        <input type="text" name="busId" class="form-control" id="busId" value="{{ busId }}" style="border-radius: 10rem;">
                     </div>
                     <div class="form-group mt-3">
                         <label>Seat Numbers:</label>
@@ -47,7 +45,7 @@
                     </div>
                     <div class="form-group mt-3">
                       <div class="text-center">
-                        <button type="submit" class=" btn btn-secondary" style="border-radius: 10rem;"><strong>SEND MESSAGE</strong></button>
+                        <button type="submit" class=" btn btn-secondary" style="border-radius: 10rem;"><strong>BOOK</strong></button>
                       </div>
                     </div>
                   </div>
@@ -111,28 +109,11 @@
   </section><!-- End Services Section -->
 </main>
 
-<script>
-  function bookSeat(id) {
 
-    document.getElementById('seat_nos').value += document.getElementById(id).value + ",";
-
-    document.getElementById(id).src = "{% static 'flexor/img/seats/reserve.png' %}";
-    document.getElementById(id).disabled = true;
-
-    var val = document.getElementById("count").value;
-
-    if (val) {
-      val = parseInt(val) + 1;
-      document.getElementById("count").value = val;
-    }
-    else {
-      document.getElementById("count").value = 1;
-    }
-  }
-
-</script>
 
 {% include 'includes/footer.html' %}
   
   </body>
+
+  
 </html>

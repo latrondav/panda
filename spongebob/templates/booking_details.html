@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+
+    <main id="main">
+ <!-- ======= Services Section ======= -->
+ <section id="services" class="services section-bg">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2><strong>BOOK BOOKING SUMMARY</strong></h2>
+        
+      </div>
+        <div class="row">
+        <div class="col" data-aos="fade-up">
+                  <div class="row">
+                    <div class="form-group mt-3">
+                        <label>NAME: {{user.username}}</label>
+                        
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>P: {{booking_details.phone_no}}</label>
+                        <input readonly type="text" class="form-control" name="seat_nos" id="seat_nos" style="border-radius: 10rem;">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Number Of Seats:</label>
+                        <input readonly type="text" class="form-control" name="count" id="count" style="border-radius: 10rem;">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Phone Number:</label>
+                      <input type="text" class="form-control" name="phone_number" id="phone_number" style="border-radius: 1rem;">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Bus Station:</label>
+                      <input type="text" class="form-control" name="bus_station" id="bus_station" style="border-radius: 1rem;">
+                    </div>
+                    
+                  </div>
+                
+        </div>
+
+        
+        </div>
+      </form>
+    </div>
+  </section><!-- End Services Section -->
+</main>
+
+
+
+{% include 'includes/footer.html' %}
+  
+  </body>
+
+  
+</html>

@@ -17,13 +17,13 @@ class Contact(models.Model):
         return str(self.name)
 
 class Bus(models.Model):
-    name = models.CharField(default='Bus',max_length=100)
-    image=models.ImageField(upload_to='', default='salafy_4.png')
+    name = models.CharField(default='PANDA BUS',max_length=100)
+    image=models.ImageField(upload_to='busimages', default='salafy_4.png')
     number_plate =models.CharField(max_length=100, default="UBA 123A")
     source = models.CharField(max_length=100)
     destination = models.CharField(max_length=100)
-    no_of_seats = models.DecimalField(decimal_places=0, max_digits=2)
-    remaining_seats = models.DecimalField(decimal_places=0, max_digits=2)
+    no_of_seats = models.DecimalField(default=60, decimal_places=0, max_digits=2)
+    remaining_seats = models.DecimalField(default=60, decimal_places=0, max_digits=2)
     price = models.DecimalField(decimal_places=0, max_digits=6)
     date = models.DateField()
     departure_time = models.TimeField()
@@ -33,20 +33,13 @@ class Bus(models.Model):
 
     def get_absolute_url(self):
         return reverse("bus-detail", kwargs={"pk": self.pk})
-    
-class User(models.Model):
-    def get_absolute_url(self):
-        return reverse("user_detail", kwargs={"pk": self.pk})
-    
-
 
 class BookedSeats(models.Model):
-        bus=models.OneToOneField(Bus, on_delete=models.CASCADE)
-        seats=models.CharField(max_length=100, default='0')
+    bus=models.OneToOneField(Bus, on_delete=models.CASCADE)
+    seats=models.CharField(max_length=100, default='0')
 
-        def __str__(self):
-            return str(self.bus)
-
+    def __str__(self):
+        return str(self.bus)
 
 class BookBus(models.Model):
     no_of_seats=models.IntegerField()
@@ -54,8 +47,6 @@ class BookBus(models.Model):
     total_price=models.IntegerField()
     phone_number=models.IntegerField()
     bus_station=models.CharField(max_length=100)
-
-    
 
 class BusBooking(models.Model):
     user_name=models.CharField(max_length=100)
@@ -76,3 +67,6 @@ class BusBooking(models.Model):
     def __str__(self):
         return str(self.date)
    
+class User(models.Model):
+    def get_absolute_url(self):
+        return reverse("user_detail", kwargs={"pk": self.pk})

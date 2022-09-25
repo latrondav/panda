@@ -13,11 +13,14 @@ urlpatterns = [
     path('signout/', views.signout_page),
     path('activate/<uidb64>/<token>/', views.activate, name= "activate"),
     path('userview/', views.userview),
-    path('services/', views.services_page),
+    path('findbus/', views.find_bus_page),
     path('contact_us/', views.contact_us_page),
     path('team/', views.team_page),
-    path('bussearch/', views.bus_search),
-    path('busbook/', views.bus_book),
+    path('bussearch/', views.bus_search_page),
+    path('busbook/', views.bus_book_page),
+    path('bookingdetails/', views.booking_details_page),
+    path('bookings/', views.bookings_page),
+
 
     #reset password path
     path('resetpasswordform/', auth_views.PasswordResetView.as_view(template_name="password_mgt/pw_reset_form.html"), name= "password_reset_form"),

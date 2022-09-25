@@ -1,6 +1,7 @@
 import email
 from email import message
 import imp
+from multiprocessing import context
 from unicodedata import name
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -23,8 +24,7 @@ from django.core.mail import EmailMessage, send_mail
     #return HttpResponse("Hello World")
 
 def home_page(request):
-    busobj = Bus.objects.all()
-    return render(request, 'index.html', {'Bus':busobj})
+    return render(request, 'index.html')
 
 def login_page(request):
     if request.method == "POST":
@@ -45,8 +45,7 @@ def login_page(request):
             login(request, user)
             fname = user.first_name
             messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            busobj = Bus.objects.all()
-            return render(request, "index.html", {'fname': fname, 'Bus':busobj})
+            return render(request, "index.html", {'fname': fname})
         else:
             messages.error(request, "BAD CREDENTIALS")
             return redirect('/login')
@@ -153,8 +152,9 @@ def activate(request, uidb64, token):
 
     return render(request, 'trinity_book.html')
     
-def services_page(request):
-    return render(request, 'services.html')
+def find_bus_page(request):
+    busobj = Bus.objects.all()
+    return render(request, 'find_bus.html', {'Bus':busobj})
 
 def contact_us_page(request):
     if request.method == 'POST':
@@ -172,60 +172,32 @@ def contact_us_page(request):
 def team_page(request):
     return render(request, 'team.html')
 
-def bus_search(request):
+def bus_search_page(request):
     if request.method == "POST":
         source = request.POST['source']
         destination = request.POST['destination']
         date = request.POST['date']
-        departure_time = request.POST['bustime']
+        departure_time = request.POST['departure_time']
 
-        bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date)
-        return render(request, 'index.html', {'Bus':bussearchobj})
+        bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date, departure_time=departure_time)
+        return render(request, 'find_bus.html', {'Bus':bussearchobj})
     else:
         busobj = Bus.objects.all()
-        return render(request, 'index.html', {'Bus':busobj})
+        return render(request, 'find_bus.html', {'Bus':busobj})
         
-def bus_book(request, *args, **kwargs):
+def bus_book_page(request, *args, **kwargs):
     if request.method == 'POST':
-        busId=request.POST["bus_id"]
+        busId=request.POST['busId']
         bus_creation=BookBusForm()
         
         bus_name_id=Bus.objects.get(id=busId)
         bus_seats=bus_name_id.no_of_seats
         busSeats=int(bus_seats)
-        new_dict={val:0 for val in range(busSeats)}
+        new_dict= {val:0 for val in range(busSeats)}
 
-        #if Bus.objects.filter(id=busId).exists():
-            #bus=Bus.objects.filter(id=busId).first()
-            #temp =  bus.bookedseats.seats
-            #seats=temp.split(',')
-            #seats.pop()
-            #i=0
-            #for i in range(len(seats)):
-                    #seat=seats[i]
-                    #temp=int(seat)
-                    #new_dict[temp]=1
-            #return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
-        #else:
-            #return render(request, 'book_bus.html', {'bus':bus_creation, 'busId':busId, 'seats':new_dict})
-    
-    return render(request, 'book_bus.html')
-
-def book_bus(request,*args,**kwargs):
-    if request.method =='POST':
-        # getting form input names
-        busId=request.POST["bus_id"]
-        bus_creation=BookBusForm()
-        
-        bus_name_id=Bus.objects.get(id=busId)
-        bus_seats=bus_name_id.no_of_seats
-        busSeats=int(bus_seats)
-        new_dict={val:0 for val in range(busSeats)}
-
-        # if any seats were booked 
         if Bus.objects.filter(id=busId).exists():
-            bus=Bus.objects.filter(id=busId).first()
-            temp =  bus.BookedSeats.seats
+            bus= Bus.objects.filter(id=busId).first()
+            temp = bus.bookedseats.seats
             seats=temp.split(',')
             seats.pop()
             i=0
@@ -233,12 +205,17 @@ def book_bus(request,*args,**kwargs):
                     seat=seats[i]
                     temp=int(seat)
                     new_dict[temp]=1
-            return render(request,'buses/book_bus.html',{'bus':bus_creation, 'busId':busId, 'seats':new_dict})
-        else:
-            return render(request,'buses/book_bus.html',{'bus':bus_creation, 'busId':busId, 'seats':new_dict})
-   
 
-def booking_details(request,*args, **kwargs):
+            context ={'bus':bus_creation, 'busId':busId, 'seats':new_dict}
+
+            return render(request, 'book_bus.html', context)
+        else:
+            return render(request, 'book_bus.html', context)
+
+    return render(request, 'book_bus.html')
+    
+
+def booking_details_page(request, *args, **kwargs):
     if request.method == 'POST':
         bus_id=request.POST.get('bus_id')
         seat_nos=request.POST.get('seat_nos')
@@ -318,3 +295,6 @@ def booking_details(request,*args, **kwargs):
             return render(request,'buses/book_bus.html', context)        
     else:
         return render(request,'buses/book_bus.html')
+
+def bookings_page(request):
+    return render(request, 'bookings.html')
