@@ -18,9 +18,9 @@
         <h2><strong>BOOK BUS</strong></h2>
         <h4><strong>SELECT A BUS SEAT BELOW</strong></h4>
       </div>
-      <form action="" method="POST">
+      <form action="/bookingdetails/" method="POST">
         <div class="row">
-        <div class="col-lg-3 col-md-3" data-aos="fade-up">
+          <div class="col-lg-3 col-md-3" data-aos="fade-up">
                 {% csrf_token %}
                   <div class="row">
                     <div class="form-group mt-3">
@@ -50,9 +50,9 @@
                     </div>
                   </div>
                 
-        </div>
+          </div>
 
-        <div class="col-lg-9 col-md-9 text-center align-items-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-9 col-md-9 text-center align-items-center" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <div class="col-lg-6 col-md-3">
               <div class="row">
@@ -102,7 +102,7 @@
               {% endfor %}
             </div>
           </div>
-        </div>
+          </div>
         </div>
       </form>
     </div>

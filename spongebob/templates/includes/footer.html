@@ -96,6 +96,7 @@ crossorigin="anonymous"></script>
 <!-- Template Main JS File -->
 <script src="{% static 'flexor/js/main.js' %}"></script>
 
+
 <script>
   function bookSeat(id) {
 
@@ -114,6 +115,21 @@ crossorigin="anonymous"></script>
       document.getElementById("count").value = 1;
     }
   }
+</script>
+<script>
+  function download(){
+    const form=document.getElementById('table');
+    html2pdf()
+    .from(form)
+    .save();
+}
+
+function downloadTicket(){
+    const Ticket=document.getElementById('Ticket');
+    html2pdf()
+    .from(Ticket)
+    .save();
+}
 
 </script>
 
