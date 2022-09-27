@@ -1,7 +1,0 @@
-mysql://b80113e0eb3c98:e0126714@eu-cdbr-west-03.cleardb.net/heroku_97a1f13ddb6c736?reconnect=true
-
-name: heroku_97a1f13ddb6c736
-user: b80113e0eb3c98
-password: e0126714
-host: eu-cdbr-west-03.cleardb.net
-port: 3306
