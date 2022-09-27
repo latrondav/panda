@@ -216,33 +216,33 @@ def bus_book_page(request, *args, **kwargs):
     
 
 def booking_details_page(request, *args, **kwargs):
-    #if request.method == 'POST':
-        #bus_id=request.POST.get('bus_id')
-        #seat_nos=request.POST.get('seat_nos')
-        #seat_nos=seat_nos[:-1]
-        #no_of_seats=int(request.POST.get('count'))
-        #phone_no=request.POST.get('phone_number')
-        #picking_station=request.POST.get('pick_up_station')
+    if request.method == 'POST':
+        bus_id=request.POST.get('busId')
+        seat_nos=request.POST.get('seat_nos')
+        seat_nos=seat_nos[:-1]
+        no_of_seats=int(request.POST.get('count'))
+        phone_no=request.POST.get('phone_number')
+        picking_station=request.POST.get('pick_up_station')
         
-        #bus=Bus.objects.get(id=bus_id)
-        #if bus:
-            #if bus.remaining_seats > no_of_seats or bus.remaining_seats == int(no_of_seats) :
-                #username=request.user.username
-                #user_id=request.user.id
-                #email=request.user.email
-                #name=bus.name
-                #price=bus.price
-                #total_price=int(no_of_seats) * bus.price
-                #source=bus.source
-                #destination=bus.destination
-                #date=bus.date
-                #seats= seat_nos
-                #time=bus.departure_time
-                #bus_remaining_seats=bus.remaining_seats - int(no_of_seats)
+        bus=Bus.objects.get(id=bus_id)
+        if bus:
+            if bus.remaining_seats > no_of_seats or bus.remaining_seats == int(no_of_seats) :
+                username=request.user.username
+                user_id=request.user.id
+                email=request.user.email
+                name=bus.name
+                price=bus.price
+                total_price=int(no_of_seats) * bus.price
+                source=bus.source
+                destination=bus.destination
+                date=bus.date
+                seats= seat_nos
+                time=bus.departure_time
+                bus_remaining_seats=bus.remaining_seats - int(no_of_seats)
                
-                #booked_seats=bus.bookedseats.seats
-                #booked_seats += ',' + seats
-                #BookedSeats.objects.update(seats=booked_seats, bus=bus)
+                booked_seats=bus.bookedseats.seats
+                booked_seats += ',' + seats
+                BookedSeats.objects.update(seats=booked_seats, bus=bus)
 
 
 
@@ -259,44 +259,44 @@ def booking_details_page(request, *args, **kwargs):
                 ##        booked_seats.save()
                 
              
-                #Bus.objects.filter(id=bus_id).update(remaining_seats=bus_remaining_seats)
-                #booking_details=BusBooking.objects.create(
-                   #user_name=username,
-                    #user_email=email,
-                    #user_id=user_id,
-                    #source=source,
-                    #destination=destination,
-                    #bus_name=name,
-                    #date=date,
-                    #price=total_price,
-                    #bus_id=bus_id,
-                    #time=time,
-                    #no_of_seats=no_of_seats,
-                    #seat_numbers=seat_nos,
-                    #phone_no=phone_no,
-                    #pick_up_station=picking_station
-                #)
-                #context={
-                    #'booking_details':booking_details,
-                    #'seat_price':price,
-                    #'bus':bus
-                #}
-                #print('============Booking ID==========', booking_details.id)     
-                #return render(request,'booking_details',locals())
-            #else:
-                #context={
-                    #'error':f'Input {bus.remaining_seats} seat/s or less.'
-                #}    
-                #return render(request,'booking_details', context)
-        #else:
-            #context={
-              #'error':'Please input a valid Bus ID'
-            #}    
-            #return render(request,'booking_details', context)        
-    #else:
-        #return render(request,'booking_details')
+                Bus.objects.filter(id=bus_id).update(remaining_seats=bus_remaining_seats)
+                booking_details=BusBooking.objects.create(
+                    user_name=username,
+                    user_email=email,
+                    user_id=user_id,
+                    source=source,
+                    destination=destination,
+                    bus_name=name,
+                    date=date,
+                    price=total_price,
+                    bus_id=bus_id,
+                    time=time,
+                    no_of_seats=no_of_seats,
+                    seat_numbers=seat_nos,
+                    phone_no=phone_no,
+                    pick_up_station=picking_station
+                )
+                context={
+                    'booking_details':booking_details,
+                    'seat_price':price,
+                    'bus':bus
+                }
+                print('============Booking ID==========', booking_details.id)     
+                return render(request,'booking_details',locals())
+            else:
+                context={
+                    'error':f'Input {bus.remaining_seats} seat/s or less.'
+                }    
+                return render(request,'booking_details.html', context)
+        else:
+            context={
+              'error':'Please input a valid Bus ID'
+            }    
+            return render(request,'booking_details.html', context)        
+    else:
+        return render(request,'booking_details.html')
 
-    return render(request,'booking_details.html')    
+    #return render(request,'booking_details.html')    
 
 def bookings_page(request):
     return render(request, 'bookings.html')
