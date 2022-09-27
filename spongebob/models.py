@@ -54,7 +54,7 @@ class BusBooking(models.Model):
     user_email=models.EmailField()
     user_id=models.IntegerField(default=0)
     source=models.CharField(max_length=30)
-    pick_up_station=models.CharField(max_length=100,default='Home station')
+    bus_station=models.CharField(max_length=100,default='Home station')
     destination=models.CharField(max_length=30)
     date=models.DateField()
     price=models.IntegerField()
