@@ -240,23 +240,24 @@ def booking_details_page(request, *args, **kwargs):
                 time=bus.departure_time
                 bus_remaining_seats=bus.remaining_seats - int(no_of_seats)
                
-                #booked_seats=bus.bookedseats.seats
-                #booked_seats += ',' + seats
+                booked_seats=bus.bookedseats.seats
+                booked_seats += ',' + seats
                 #BookedSeats.objects.update(seats=booked_seats, bus=bus)
+                BookedSeats.objects.filter(bus_id=bus).update(seats=booked_seats)
 
 
 
-                try:
-                    booked_seats, created=BookedSeats.objects.get_or_create(id=bus_id)
+                #try:
+                    #booked_seats, created=BookedSeats.objects.get_or_create(id=bus_id)
                     
-                    if created:
-                        booked_seats.seats += seats
-                        booked_seats.save()
-                        print(booked_seats)
-                except:
-                        bus=Bus.objects.filter(id=bus_id).first()
-                        booked_seats=BookedSeats(seats=seat_nos, bus=bus)
-                        booked_seats.save()
+                    #if created:
+                        #booked_seats.seats += seats
+                        #booked_seats.save()
+                        #print(booked_seats)
+                #except:
+                        #bus=Bus.objects.filter(id=bus_id).first()
+                        #booked_seats=BookedSeats(seats=seat_nos, bus=bus)
+                        #booked_seats.save()
                 
              
                 Bus.objects.filter(id=bus_id).update(remaining_seats=bus_remaining_seats)
