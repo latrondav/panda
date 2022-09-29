@@ -106,6 +106,17 @@
               </div>
           </div>
 
+          {% if error %}
+
+            <div class="alert alert-danger text-center h4">
+              <strong>Sorry!, {{error}}</strong>
+            </div>
+            <div class='container-fluid text-center'>
+              <a class='btn btn-info' href="/">Home</a>
+            </div>
+
+          {% else %}
+
           <div class="row">
             <div class="col-xl col-lg d-flex">
               <div class="icon-boxes d-flex flex-column justify-content-center">
@@ -154,6 +165,8 @@
               </div>
             </div>
           </div>
+
+          {% endif%}
         </div>
       </section>
       <!-- End Why Us Section -->

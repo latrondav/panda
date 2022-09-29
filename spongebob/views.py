@@ -180,10 +180,22 @@ def bus_search_page(request):
         departure_time = request.POST['departure_time']
 
         bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date, departure_time=departure_time)
-        return render(request, 'find_bus.html', {'Bus':bussearchobj})
+        if bussearchobj:
+            context={
+                'Bus':bussearchobj
+            }
+            return render(request, 'find_bus.html', context)
+        else:
+            context={
+                'error':f"No buses available for that route, date and time."
+            }
+            return render(request, 'find_bus.html', context)
     else:
         busobj = Bus.objects.all()
-        return render(request, 'find_bus.html', {'Bus':busobj})
+        context={
+            'Bus':busobj
+        }
+        return render(request, 'find_bus.html', context)
         
 def bus_book_page(request, *args, **kwargs):
     if request.method == 'POST':
