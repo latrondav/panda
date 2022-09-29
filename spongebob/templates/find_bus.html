@@ -6,8 +6,365 @@
   {% include 'includes/head.html' %}
 
   <body>
+    
 
     {% include 'includes/header.html' %}
+
+    {% if user.is_superuser %}
+
+    <main id="main">
+      <!-- ======= Why Us Section ======= -->
+      <section id="why-us" class="why-us">
+        <div class="container">
+          
+          <div class="section-title" data-aos="fade-up">
+            <h2><strong>FIND A BUS</strong></h2>
+            <h4><strong>SEARCH, FIND A BUS AND PROCEED TO BOOK</strong></h4>
+          </div>
+
+          <div class="row">
+              <div class="col-xl col-lg" data-aos="fade-up">
+                <div class="content bg-bussearch">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h2>BUS<br>SEARCH</h2>
+                    </div>
+                    <div class="col-md-9">
+                      <form action="/bussearch/" method="POST">
+                        {% csrf_token %}
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <select class="form-control" id="source" name="source">
+                                    <option value="FROM">FROM</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select> 
+                                </div>
+                              </div><br>
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <select class="form-control" id="destination" name="destination">
+                                    <option value="TO">TO</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='date' class="form-control" id="date" name="date" placeholder="DATE"/>
+                                </div>
+                              </div><br>
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='time' class="form-control" id="departure_time" name="departure_time" placeholder="TIME"/>   
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                              <button type="submit" class="more-btn"><strong>SEARCH</strong></button>
+                            </div>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          {% if error %}
+
+            <div class="alert alert-danger text-center h4" data-aos="fade-up">
+              <strong>Sorry!, {{error}}</strong>
+            </div>
+            <div class="container-fluid text-center" data-aos="fade-up">
+              <a class='btn btn-info' href="/">Home</a>
+            </div>
+
+          {% else %}
+
+            <div class="row">
+            <div class="col-xl col-lg d-flex">
+              <div class="icon-boxes d-flex flex-column justify-content-center">
+                <form action="/busbook/" method="POST">
+                {% csrf_token %}
+                  <div class="row">
+                    {% for bus in Bus %}
+                      <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
+                          {% if bus.image %}
+                          <img src="{{ bus.image.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
+                          <br>
+                          {% endif %}
+                          <h4><strong>{{ bus.name }}</strong></h4>
+                          <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" value="{{ bus.id }}"></strong></h6>
+                          <p>
+                            <strong>
+                              <ul class="list-unstyled">
+                                <li>NUMBER PLATE: {{ bus.number_plate }}</li>
+                                <li>FROM: {{ bus.source }}</li>
+                                <li>TO: {{ bus.destination }}</li>
+                                <li>AVAILABLE SEATS: {{ bus.remaining_seats }}</li>
+                                <li>PRICE: UGX {{ bus.price }}</li>
+                                <li>DEPARTURE DATE: {{ bus.date }}</li>
+                                <li>DEPARTURE TIME: {{ bus.departure_time }}</li>
+                              </ul>
+                            </strong>
+                          </p>
+                          <button type="submit"
+                          class=" btn {% if bus.remaining_seats == 0 %} btn-secondary {% else %} btn-primary {% endif %} " 
+                          style="border-radius: 25px;" 
+                          {% if bus.remaining_seats == 0 %} value="FULLY BOOKED" disabled {% endif %}>
+                          <strong>
+                            {% if bus.remaining_seats == 0 %}
+                              FULLY BOOKED
+                            {% else %}
+                              BOOK NOW
+                            {% endif %}
+                          </strong>
+                          </button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </form>
+              </div>
+            </div>
+            </div>
+
+          {% endif%}
+
+          <div class="row mt-4">
+            <div class="col-4"></div>
+            <div class="col-4 d-flex justify-content-center">
+              <a class='btn btn-primary' href="">ADMIN ADD BUS</a>
+            </div>
+            <div class="col-4"></div>
+          </div>
+
+          
+        </div>
+      </section>
+      <!-- End Why Us Section -->
+     
+    </main>
+
+    {% elif user.is_staff %}
+
+    <main id="main">
+      <!-- ======= Why Us Section ======= -->
+      <section id="why-us" class="why-us">
+        <div class="container">
+          
+          <div class="section-title" data-aos="fade-up">
+            <h2><strong>FIND A BUS</strong></h2>
+            <h4><strong>SEARCH, FIND A BUS AND PROCEED TO BOOK</strong></h4>
+          </div>
+
+          <div class="row">
+              <div class="col-xl col-lg" data-aos="fade-up">
+                <div class="content bg-bussearch">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h2>BUS<br>SEARCH</h2>
+                    </div>
+                    <div class="col-md-9">
+                      <form action="/bussearch/" method="POST">
+                        {% csrf_token %}
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <select class="form-control" id="source" name="source">
+                                    <option value="FROM">FROM</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select> 
+                                </div>
+                              </div><br>
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <select class="form-control" id="destination" name="destination">
+                                    <option value="TO">TO</option>
+                                    <option value="KAMPALA">KAMPALA</option>
+                                    <option value="FORTPORTAL">FORTPORTAL</option>
+                                    <option value="KASESE">KASESE</option>
+                                    <option value="KABALE">KABALE</option>
+                                    <option value="BUSHENYI">BUSHENYI</option>
+                                    <option value="NTUNGAMO">NTUNGAMO</option>
+                                    <option value="MBARARA">MBARARA</option>
+                                    <option value="MASAKA">MASAKA</option>
+                                    <option value="JINJA">JINJA</option>
+                                    <option value="SOROTI">SOROTI</option>
+                                    <option value="TORORO">TORORO</option>
+                                    <option value="MBALE">MBALE</option>
+                                    <option value="KABONG">KABONG</option>
+                                    <option value="GULU">GULU</option>
+                                    <option value="LIRA">LIRA</option>
+                                    <option value="KITGUM">KITGUM</option>
+                                    <option value="ARUA">ARUA</option>
+                                    <option value="NEBBIE">NEBBIE</option>
+                                    <option value="MASINDI">MASINDI</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='date' class="form-control" id="date" name="date" placeholder="DATE"/>
+                                </div>
+                              </div><br>
+                              <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                  <input type='time' class="form-control" id="departure_time" name="departure_time" placeholder="TIME"/>   
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                              <button type="submit" class="more-btn"><strong>SEARCH</strong></button>
+                            </div>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          {% if error %}
+
+            <div class="alert alert-danger text-center h4" data-aos="fade-up">
+              <strong>Sorry!, {{error}}</strong>
+            </div>
+            <div class="container-fluid text-center" data-aos="fade-up">
+              <a class='btn btn-info' href="/">Home</a>
+            </div>
+
+          {% else %}
+
+            <div class="row">
+            <div class="col-xl col-lg d-flex">
+              <div class="icon-boxes d-flex flex-column justify-content-center">
+                <form action="/busbook/" method="POST">
+                {% csrf_token %}
+                  <div class="row">
+                    {% for bus in Bus %}
+                      <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
+                          {% if bus.image %}
+                          <img src="{{ bus.image.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
+                          <br>
+                          {% endif %}
+                          <h4><strong>{{ bus.name }}</strong></h4>
+                          <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" value="{{ bus.id }}"></strong></h6>
+                          <p>
+                            <strong>
+                              <ul class="list-unstyled">
+                                <li>NUMBER PLATE: {{ bus.number_plate }}</li>
+                                <li>FROM: {{ bus.source }}</li>
+                                <li>TO: {{ bus.destination }}</li>
+                                <li>AVAILABLE SEATS: {{ bus.remaining_seats }}</li>
+                                <li>PRICE: UGX {{ bus.price }}</li>
+                                <li>DEPARTURE DATE: {{ bus.date }}</li>
+                                <li>DEPARTURE TIME: {{ bus.departure_time }}</li>
+                              </ul>
+                            </strong>
+                          </p>
+                          <button type="submit"
+                          class=" btn {% if bus.remaining_seats == 0 %} btn-secondary {% else %} btn-primary {% endif %} " 
+                          style="border-radius: 25px;" 
+                          {% if bus.remaining_seats == 0 %} value="FULLY BOOKED" disabled {% endif %}>
+                          <strong>
+                            {% if bus.remaining_seats == 0 %}
+                              FULLY BOOKED
+                            {% else %}
+                              BOOK NOW
+                            {% endif %}
+                          </strong>
+                          </button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </form>
+              </div>
+            </div>
+            </div>
+
+          {% endif%}
+
+          <div class="row mt-4">
+            <div class="col-4"></div>
+            <div class="col-4 d-flex justify-content-center">
+              <a class='btn btn-primary' href=""> STAFF ADD BUS</a>
+            </div>
+            <div class="col-4"></div>
+          </div>
+
+          
+        </div>
+      </section>
+      <!-- End Why Us Section -->
+     
+    </main>
+
+    {% else %}
 
     <main id="main">
       <!-- ======= Why Us Section ======= -->
@@ -174,6 +531,8 @@
       <!-- End Why Us Section -->
      
     </main>
+
+    {% endif %}
 
     {% include 'includes/footer.html' %}
   
