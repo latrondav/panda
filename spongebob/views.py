@@ -308,5 +308,9 @@ def bookings_page(request):
         }
         return render(request, 'bookings.html', context)
     else:
-        return render(request, 'bookings.html')
-    
+        context={
+            'error':f'You have no bookings yet please find and book a bus, thank you.'
+        }
+        return render(request, 'bookings.html', context)
+
+    #return render(request, 'bookings.html')
