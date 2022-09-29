@@ -13,6 +13,7 @@
       <!-- ======= Why Us Section ======= -->
       <section id="why-us" class="why-us">
         <div class="container">
+          
           <div class="section-title" data-aos="fade-up">
             <h2><strong>FIND A BUS</strong></h2>
             <h4><strong>SEARCH, FIND A BUS AND PROCEED TO BOOK</strong></h4>
@@ -108,16 +109,16 @@
 
           {% if error %}
 
-            <div class="alert alert-danger text-center h4">
+            <div class="alert alert-danger text-center h4" data-aos="fade-up">
               <strong>Sorry!, {{error}}</strong>
             </div>
-            <div class='container-fluid text-center'>
+            <div class="container-fluid text-center" data-aos="fade-up">
               <a class='btn btn-info' href="/">Home</a>
             </div>
 
           {% else %}
 
-          <div class="row">
+            <div class="row">
             <div class="col-xl col-lg d-flex">
               <div class="icon-boxes d-flex flex-column justify-content-center">
                 <form action="/busbook/" method="POST">
@@ -164,9 +165,10 @@
                 </form>
               </div>
             </div>
-          </div>
+            </div>
 
           {% endif%}
+
         </div>
       </section>
       <!-- End Why Us Section -->
