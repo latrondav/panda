@@ -300,4 +300,13 @@ def booking_details_page(request, *args, **kwargs):
     #return render(request,'booking_details.html')    
 
 def bookings_page(request):
-    return render(request, 'bookings.html')
+    userId = request.user.id
+    bookings = BusBooking.objects.filter(user_id=userId)
+    if bookings:
+        context={
+            'bookings':bookings
+        }
+        return render(request, 'bookings.html', context)
+    else:
+        return render(request, 'bookings.html')
+    
