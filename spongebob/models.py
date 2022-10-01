@@ -58,7 +58,7 @@ class BusBooking(models.Model):
     destination=models.CharField(max_length=30)
     date=models.DateField()
     price=models.IntegerField()
-    phone_no=models.IntegerField(default=+256000000)
+    phone_no=models.IntegerField(default=+254000000)
     time=models.TimeField()
     no_of_seats=models.IntegerField(default=0)
     bus_name=models.CharField(max_length=20)

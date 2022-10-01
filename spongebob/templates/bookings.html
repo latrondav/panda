@@ -13,57 +13,9 @@
       <!-- ======= Why Us Section ======= -->
       <section id="why-us" class="why-us">
         <div class="container">
-
           <div class="section-title" data-aos="fade-up">
             <h2><strong>YOUR BOOKINGS</strong></h2>
           </div>
-
-          <div class="bookings">
-            {% if error %}
-              <div class="alert alert-danger text-center h4">
-                <strong>SORRY!, {{ error }}</strong>
-              </div>
-              <div class="container-fluid text center">
-                <a class="btn btn-info" href="/findbus">Find Bus</a>
-              </div>
-            {% else %}
-              <div class="bookings-table">
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr class="h6">
-                      <th scope="col">Booking ID</th>
-                      <th scope="col">Bus Name</th>
-                      <th scope="col">Source</th>
-                      <th scope="col">Destination</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Departure Time</th>
-                      <th scope="col">Seats Booked</th>
-                      <th scope="col">No Of Seats</th>
-                      <th scope="col">Booking Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for booking in bookings %}
-                      <tr>
-                        <td>{{ booking.id}}</td>
-                        <td>{{ booking.bus_name}}</td>
-                        <td>{{ booking.source}}</td>
-                        <td>{{ booking.destination}}</td>
-                        <td>UGX.{{ booking.price}}</td>
-                        <td>{{ booking.date}}</td>
-                        <td>{{ booking.time}}</td>
-                        <td>{{ booking.seat_numbers}}</td>
-                        <td>{{ booking.no_of_seats}}</td>
-                        <td><strong>BOOKED</strong></td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table
-              </div
-            {% endif %}
-          </div>
-          
         </div>
       </section>
       <!-- End Why Us Section -->

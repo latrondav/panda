@@ -1,51 +1,6 @@
 {% load static %}
-{% if user.is_superuser %}
-<!-- ======= Header ======= -->
-<header id="header" class="d-flex align-items-center">
-  <div class="container d-flex align-items-center justify-content-between">
-    <div class="logo">
-      <h1><a href="#"><img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="70" height="50"><strong>PANDA</strong></a></h1>
-    </div>
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="nav-link " href="/"><strong>Home</strong></a></li>
-        <li><a class="nav-link " href="/findbus"><strong>Find Bus</strong></a></li>
-        <li><a class="nav-link " href="/bookings"><strong>Bookings</strong></a></li>
-        <li><a class="nav-link " href="/addbus"><strong>Add Bus</strong></a></li>
-        <li><a class="nav-link " href="/busdetails"><strong>Bus Details</strong></a></li>
-        <li><a class="nav-link " href="/contact_us"><strong>Contact Us</strong></a></li>
-        <li><a class="nav-link " href="/team"><strong>Team</strong></a></li>
-        <li><a class="nav-link " href="/signout"><strong>Signout</strong></a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
-  </div>
-</header>
-<!-- End Header -->
-{% elif user.is_staff %}
-<!-- ======= Header ======= -->
-<header id="header" class="d-flex align-items-center">
-  <div class="container d-flex align-items-center justify-content-between">
-    <div class="logo">
-      <h1><a href="#"><img class="mb-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="70" height="50"><strong>PANDA</strong></a></h1>
-    </div>
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="nav-link " href="/"><strong>Home</strong></a></li>
-        <li><a class="nav-link " href="/findbus"><strong>Find Bus</strong></a></li>
-        <li><a class="nav-link " href="/bookings"><strong>Bookings</strong></a></li>
-        <li><a class="nav-link " href="/addbus"><strong>Add Bus</strong></a></li>
-        <li><a class="nav-link " href="/busdetails"><strong>Bus Details</strong></a></li>
-        <li><a class="nav-link " href="/contact_us"><strong>Contact Us</strong></a></li>
-        <li><a class="nav-link " href="/team"><strong>Team</strong></a></li>
-        <li><a class="nav-link " href="/signout"><strong>Signout</strong></a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
-  </div>
-</header>
-<!-- End Header -->
-{% elif user.is_active %}
+
+{% if user.is_authenticated %}
 <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
