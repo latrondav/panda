@@ -154,7 +154,11 @@ def activate(request, uidb64, token):
     
 def find_bus_page(request):
     busobj = Bus.objects.all()
-    return render(request, 'find_bus.html', {'Bus':busobj})
+
+    context={
+        'Bus':busobj
+    }
+    return render(request, 'find_bus.html', context)
 
 def contact_us_page(request):
     if request.method == 'POST':
@@ -326,3 +330,11 @@ def bookings_page(request):
         return render(request, 'bookings.html', context)
 
     #return render(request, 'bookings.html')
+
+def buses_page(request):
+    busobj = Bus.objects.all()
+
+    context={
+        'Bus':busobj
+    }
+    return render(request, 'buses.html', context)
