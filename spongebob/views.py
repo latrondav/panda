@@ -304,7 +304,6 @@ def booking_details_page(request, *args, **kwargs):
     #return render(request,'booking_details.html')    
 
 def bookings_page(request):
-<<<<<<< HEAD
     userId = request.user.id
     bookings = BusBooking.objects.filter(user_id=userId)
     if bookings:
@@ -327,6 +326,3 @@ def buses_page(request):
         'Bus':busobj
     }
     return render(request, 'buses.html', context)
-=======
-    return render(request, 'bookings.html')
->>>>>>> 2da8a26ea1f8fc9b05069fb9e2cd04228270e17b
