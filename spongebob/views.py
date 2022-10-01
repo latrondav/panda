@@ -326,3 +326,9 @@ def buses_page(request):
         'Bus':busobj
     }
     return render(request, 'buses.html', context)
+
+def add_bus_page(request):
+    return render(request, 'add_bus.html')
+
+def bus_details_page(request):
+    return render(request, 'bus_details.html')
