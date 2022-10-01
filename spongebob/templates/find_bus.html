@@ -111,14 +111,16 @@
               <div class="icon-boxes d-flex flex-column justify-content-center">
                 <form action="/busbook/" method="POST">
                 {% csrf_token %}
-                  <div class="row">
+                  <div class="row justify-content-center">
                     {% for bus in Bus %}
-                      <div class="col-xl-4 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box mt-4 mt-xl-4" style="width: 1000px;">
+                    <div class="col-lg-4 col-md-4 d-flex align-items-stretch justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                      <div class="member mt-4 mb-4 ml-4 mr-4 ">
+                        <div class="member-img">
                           {% if bus.image %}
-                          <img src="{{ bus.image.url }}" class="img-fluid" alt="" style="max-height: 200px;"><br>
-                          <br>
+                            <img src="{{ bus.image.url }}" class="img-fluid" style="border-radius: 10px;" alt="">
                           {% endif %}
+                        </div>
+                        <div class="member-info text-center">
                           <h4><strong>{{ bus.name }}</strong></h4>
                           <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" value="{{ bus.id }}"></strong></h6>
                           <p>
@@ -148,6 +150,7 @@
                           </button>
                         </div>
                       </div>
+                    </div>
                     {% endfor %}
                   </div>
                 </form>
