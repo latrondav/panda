@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+    
+    <main id="main">
+     <!-- ======= Bus Details Section ======= -->
+     <section id="contact" class="contact">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2 data-aos="fade-up"><strong>BUSES GENERAL REPORT</strong></h2>
+            <p data-aos="fade-up"><strong>Your Buses General Report</strong></p>
+          </div>
+  
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-xl-9 col-lg-12 mt-4">
+              <div class="row">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>BOOKING ID</th>
+                      <th>PASSENGER NAME</th>
+                      <th>SEATS BOOKED</th>
+                      <th>NO OF SEATS BOOKED</th>
+                      <th>AMOUNT PAID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for bus_detail in bus_details %}
+                    <tr>
+                      <td>{{ bus_detail.id }}</td>
+                      <td>{{ bus_detail.user_name }}</td>
+                      <td>{{ bus_detail.seat_numbers }}</td>
+                      <td>{{ bus_detail.no_of_seats }}</td>
+                      <td>{{ bus_detail.price }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Bus Details Section -->
+    </main>
+
+    {% include 'includes/footer.html' %}
+   
+  </body>
+</html>

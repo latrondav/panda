@@ -363,16 +363,14 @@ def add_bus_page(request):
     
     #return render(request, 'add_bus.html')
 
-def bus_details_page(request):
+def bus_reports_page(request):
     bus_admin_id = request.user.id
 
     bus_details = BusBooking.objects.filter(bus_admin_id = bus_admin_id)
-    buss = Bus.objects.filter(bus_admin_id = bus_admin_id)
     if bus_details:
         context={
             'bus_details':bus_details,
-            'buss':buss,
         }
-        return render(request, 'bus_details.html', context)
+        return render(request, 'bus_reports.html', context)
     else:
-        return render(request, 'bus_details.html')
+        return render(request, 'bus_reports.html')
