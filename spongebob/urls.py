@@ -22,7 +22,10 @@ urlpatterns = [
     path('bookings/', views.bookings_page),
     path('buses/', views.buses_page),
     path('addbus/', views.add_bus_page),
-    path('busreports/', views.bus_reports_page),
+    path('fleetsreports/', views.fleets_reports_page),
+    path('booked/', views.booked_page),
+    path('fleets/', views.fleets_page),
+    path('updatefleet/', views.update_fleet_page),
 
 
     #reset password path

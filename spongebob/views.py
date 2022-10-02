@@ -1,3 +1,5 @@
+from cgi import print_exception
+from datetime import date
 import email
 from email import message
 import imp
@@ -199,6 +201,7 @@ def bus_search_page(request):
 def bus_book_page(request, *args, **kwargs):
     if request.method == 'POST':
         busId=request.POST['busId']
+        unit_price=request.POST['unit_price']
         bus_creation=BookBusForm()
         
         bus_name_id=Bus.objects.get(id=busId)
@@ -217,7 +220,7 @@ def bus_book_page(request, *args, **kwargs):
                     temp=int(seat)
                     new_dict[temp]=1
 
-            context ={'bus':bus_creation, 'busId':busId, 'seats':new_dict}
+            context ={'bus':bus_creation, 'busId':busId, 'seats':new_dict, 'unit_price':unit_price}
 
             return render(request, 'book_bus.html', context)
         else:
@@ -232,7 +235,10 @@ def booking_details_page(request, *args, **kwargs):
         seat_nos=request.POST.get('seat_nos')
         seat_nos=seat_nos[:-1]
         no_of_seats=int(request.POST.get('count'))
-        phone_no=request.POST.get('phone_number')
+        unit_price=request.POST.get('unit_price')
+        total_price=request.POST.get('total_price')
+        payment_method=request.POST.get('payment_method')
+        phone_no=request.POST.get('phone_no')
         bus_station=request.POST.get('bus_station')
         
         bus=Bus.objects.get(id=bus_id)
@@ -243,10 +249,7 @@ def booking_details_page(request, *args, **kwargs):
                 email=request.user.email
                 bus_admin_id=bus.bus_admin_id
                 number_plate=bus.number_plate
-                image=bus.image
                 name=bus.name
-                price=bus.price
-                total_price=int(no_of_seats) * bus.price
                 source=bus.source
                 destination=bus.destination
                 date=bus.date
@@ -276,28 +279,28 @@ def booking_details_page(request, *args, **kwargs):
              
                 Bus.objects.filter(id=bus_id).update(remaining_seats=bus_remaining_seats)
                 booking_details=BusBooking.objects.create(
+                    bus_admin_id=bus_admin_id,
                     user_name=username,
                     user_email=email,
                     user_id=user_id,
-                    bus_admin_id=bus_admin_id,
                     number_plate=number_plate,
-                    image=image,
                     source=source,
                     destination=destination,
                     bus_name=name,
                     date=date,
-                    price=price,
+                    unit_price=unit_price,
                     total_price=total_price,
+                    payment_method=payment_method,
                     bus_id=bus_id,
                     time=time,
                     no_of_seats=no_of_seats,
                     seat_numbers=seat_nos,
                     phone_no=phone_no,
-                    bus_station=bus_station
+                    bus_station=bus_station,
                 )
                 context={
                     'booking_details':booking_details,
-                    'seat_price':price,
+                    'seat_price':unit_price,
                     'bus':bus
                 }
                 print('============Booking ID==========', booking_details.id)     
@@ -333,6 +336,17 @@ def bookings_page(request):
 
     #return render(request, 'bookings.html')
 
+def booked_page(request):
+    booked_id = request.POST['booked_id']
+    booked = BusBooking.objects.get(id=booked_id)
+    if booked:
+        context={
+            'booked':booked
+        }
+        return render(request, 'booked.html', context)
+    else:
+        return render(request, 'booked.html')
+
 def buses_page(request):
     busobj = Bus.objects.all()
 
@@ -345,8 +359,9 @@ def add_bus_page(request):
     if request.method == 'POST':
         bus_admin_id=request.user.id
         name = request.POST['name']
-        image = request.POST['image']
+        image = request.FILES['image']
         number_plate = request.POST['number_plate']
+        source = request.POST['source']
         destination = request.POST['destination']
         no_of_seats = request.POST['no_of_seats']
         remaining_seats = request.POST['remaining_seats']
@@ -354,16 +369,45 @@ def add_bus_page(request):
         date = request.POST['date']
         departure_time = request.POST['departure_time']
 
-        new_bus = Bus(bus_admin_id = bus_admin_id, name = name, image = image, number_plate = number_plate, destination = destination, no_of_seats = no_of_seats, remaining_seats = remaining_seats, price = price, date = date, departure_time = departure_time)
-        new_bus.save()
+        bus = Bus(bus_admin_id = bus_admin_id, name = name, image = image, number_plate = number_plate, source = source, destination = destination, no_of_seats = no_of_seats, remaining_seats = remaining_seats, price = price, date = date, departure_time = departure_time)
+        bus.save()
         messages.success(request, "BUS ADDITION SUCCESSFUL, THANK YOU FOR USING PANDA")
-        return render(request, 'add_bus.html')
+        return render(request, 'fleet.html')
     else:
-        return render(request, 'add_bus.html')
-    
+        return render(request, 'fleet.html')
+
+def update_fleet_page(request):
+    if request.method == 'POST':
+        bus_id=request.POST['busId']
+        source = request.POST['source']
+        destination = request.POST['destination']
+        remaining_seats = request.POST['remaining_seats']
+        date = request.POST['date']
+        departure_time = request.POST['departure_time']
+
+        Bus.objects.filter(id=bus_id).update(source=source, destination=destination, remaining_seats=remaining_seats, date=date, departure_time=departure_time)
+        messages.success(request, "FLEET UPDATED SUCCESSFUL, RETURN TO HOMEPAGE AND THANK YOU FOR USING PANDA")
+        return render (request, 'fleet.html')
+    else:
+        return render (request, 'fleet.html')
+
+    #return render(request, 'fleet.html')
+
+def fleets_page(request):
+    bus_admin_id = request.user.id
+
+    fleets = Bus.objects.filter(bus_admin_id = bus_admin_id)
+    if fleets:
+        context={
+            'fleets':fleets
+        }
+        return render(request, 'fleet.html', context)
+    else:
+        return render(request, 'fleet.html')
+
     #return render(request, 'add_bus.html')
 
-def bus_reports_page(request):
+def fleets_reports_page(request):
     bus_admin_id = request.user.id
 
     bus_details = BusBooking.objects.filter(bus_admin_id = bus_admin_id)
@@ -371,6 +415,6 @@ def bus_reports_page(request):
         context={
             'bus_details':bus_details,
         }
-        return render(request, 'bus_reports.html', context)
+        return render(request, 'fleets_reports.html', context)
     else:
-        return render(request, 'bus_reports.html')
+        return render(request, 'fleets_reports.html')

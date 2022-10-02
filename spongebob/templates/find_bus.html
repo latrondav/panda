@@ -133,7 +133,7 @@
                         </div>
                         <div class="member-info text-center">
                           <h4><strong>{{ bus.name }}</strong></h4>
-                          <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" value="{{ bus.id }}"></strong></h6>
+                          <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" style="border-radius: 2rem;" value="{{ bus.id }}"></strong></h6>
                           <p>
                             <strong>
                               <ul class="list-unstyled">
@@ -141,7 +141,7 @@
                                 <li>FROM: {{ bus.source }}</li>
                                 <li>TO: {{ bus.destination }}</li>
                                 <li>AVAILABLE SEATS: {{ bus.remaining_seats }}</li>
-                                <li>PRICE: UGX {{ bus.price }}</li>
+                                <li>PRICE: UGX. <input readonly class="text-center" name="unit_price" id="unit_price" style="border-radius: 2rem;" value="{{ bus.price }}"></li>
                                 <li>DEPARTURE DATE: {{ bus.date }}</li>
                                 <li>DEPARTURE TIME: {{ bus.departure_time }}</li>
                               </ul>

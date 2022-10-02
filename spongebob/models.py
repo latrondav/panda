@@ -51,19 +51,19 @@ class BookBus(models.Model):
     bus_station=models.CharField(max_length=100)
 
 class BusBooking(models.Model):
+    bus_admin_id=models.IntegerField(default=0)
     user_name=models.CharField(max_length=100)
     user_email=models.EmailField()
     user_id=models.IntegerField(default=0)
-    bus_admin_id=models.IntegerField(default=0)
-    number_plate =models.CharField(max_length=100, default='UBA 123A')
-    image=models.CharField(max_length=100, default='/1.jpg')
     source=models.CharField(max_length=30)
+    number_plate=models.CharField(max_length=30, default='UBA 123A')
     bus_station=models.CharField(max_length=100,default='Home station')
     destination=models.CharField(max_length=30)
     date=models.DateField()
-    price=models.IntegerField()
+    unit_price=models.IntegerField()
     total_price=models.IntegerField(default=0)
-    phone_no=models.IntegerField(default=+254000000)
+    payment_method=models.CharField(max_length=100, default='Cash On Departure')
+    phone_no=models.IntegerField(default=+256000000)
     time=models.TimeField()
     no_of_seats=models.IntegerField(default=0)
     bus_name=models.CharField(max_length=20)
@@ -71,7 +71,7 @@ class BusBooking(models.Model):
     seat_numbers=models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return str(self.date)
+        return str(self.user_name)
    
 class User(models.Model):
     def get_absolute_url(self):

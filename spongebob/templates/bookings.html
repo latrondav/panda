@@ -42,8 +42,10 @@
               </thead>
               <tbody>
                 {% for booking in bookings %}
+                <form action="/booked/" method="POST">
+                {% csrf_token %}
                 <tr class="h6 text-center">
-                  <td>{{booking.id}}</td>
+                  <td><input readonly class="text-center" name="booked_id" id="booked_id" style="border-radius: 2rem;" value="{{booking.id}}"></td>
                   <td>{{booking.bus_name}}</td>
                   <td>{{booking.source}}</td>
                   <td>{{booking.destination}}</td>
@@ -51,8 +53,9 @@
                   <td>{{booking.date}}</td>
                   <td>{{booking.time}}</td>
                   <td>{{booking.no_of_seats}}</td>
-                  <td><a href="#">Booked</a></td>
+                  <td><button type="submit" class="btn btn-primary" >Booked</button></td>
                 </tr>
+                </form>
                 {% endfor %}
               </tbody>
             </table>

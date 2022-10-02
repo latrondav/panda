@@ -25,23 +25,54 @@
                   <div class="row">
                     <div class="form-group mt-3">
                         <label>Bus Id:</label>
-                        <input type="text" name="busId" class="form-control" id="busId" value="{{ busId }}" style="border-radius: 10rem;">
+                        <input type="text" name="busId" class="form-control" id="busId" value="{{ busId }}" style="border-radius: 10rem;" required>
                     </div>
                     <div class="form-group mt-3">
                         <label>Seat Numbers:</label>
-                        <input readonly type="text" class="form-control" name="seat_nos" id="seat_nos" style="border-radius: 10rem;">
+                        <input readonly type="text" class="form-control" name="seat_nos" id="seat_nos" style="border-radius: 10rem;" required>
                     </div>
                     <div class="form-group mt-3">
                         <label>Number Of Seats:</label>
-                        <input readonly type="text" class="form-control" name="count" id="count" style="border-radius: 10rem;">
+                        <input readonly type="text" class="form-control" name="count" id="count" style="border-radius: 10rem;" required>
                     </div>
                     <div class="form-group mt-3">
-                        <label>Phone Number:</label>
-                      <input type="text" class="form-control" name="phone_number" id="phone_number" style="border-radius: 1rem;">
+                      <label>Unit Price:</label>
+                      <input readonly type="text" class="form-control" name="unit_price" id="unit_price" value="{{ unit_price }}" style="border-radius: 1rem;" required>
                     </div>
                     <div class="form-group mt-3">
-                        <label>Bus Station:</label>
-                      <input type="text" class="form-control" name="bus_station" id="bus_station" style="border-radius: 1rem;">
+                      <label>Total Price:</label>
+                      <input readonly type="text" class="form-control" name="total_price" id="total_price" style="border-radius: 1rem;" required>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label>Phone Number:</label>
+                      <input type="text" class="form-control" name="phone_no" id="phone_no" style="border-radius: 1rem;" required>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label>Payment Method:</label><br>
+                      <img src="{% static 'flexor/img/payicon/cash.png' %}" style="margin-right: 10px; margin-left: 10px; height: 30px; width: 30px;"><img src="{% static 'flexor/img/payicon/mtnmm.png' %}" style="margin-right: 10px; margin-left: 10px; height: 30px; width: 30px;"><img src="{% static 'flexor/img/payicon/airtelmm.png' %}" style="margin-right: 10px; margin-left: 10px; height: 30px; width: 30px;"><img src="{% static 'flexor/img/payicon/visa.png' %}" style="margin-right: 10px; margin-left: 10px; height: 30px; width: 30px;">
+                      <select class="form-control mt-4" id="payment_method" name="payment_method" style="border-radius: 1rem;" required>
+                        <option></option>
+                        <option value="CASH ON DEPARTURE ">CASH PAYMENT</option>
+                        <option value="MTN MOBILE MONEY">MTN MOBILE MONEY PAYMENT</option>
+                        <option value="AIRTEL MOBILE MONEY">AIRTEL MOBILE MONEY PAYMENT</option>
+                        <option value="VISA CARD">VISA CARD PAYMENT</option>
+                      </select>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label>Bus Station:</label>
+                      <select class="form-control" id="bus_station" name="bus_station" style="border-radius: 1rem;" required>
+                        <option></option>
+                        <option value="Kisenyi Bus Terminal">Kisenyi Bus Terminal</option>
+                        <option value="Namayiba Bus Station">Namayiba Bus Station</option>
+                        <option value="Namirembe Bus Station">Namirembe Bus Station</option>
+                        <option value="Bukesa Bus Station">Bukesa Bus Station</option>
+                        <option value="Mbarara Bus Station">Mbarara Bus Station</option>
+                        <option value="FortPortal Bus Station">FortPortal Bus Station</option>
+                        <option value="Arua Bus Station">Arua Bus Station</option>
+                        <option value="Gulu Bus Station">Gulu Bus Station</option>
+                        <option value="Mbale Bus Station">Mbale Bus Station</option>
+                        <option value="Lira Bus Station">Lira Bus Station</option>
+                      </select>
                     </div>
                     <div class="form-group mt-3">
                       <div class="text-center">

@@ -16,19 +16,19 @@
   
           <div class="section-title">
             <h2 data-aos="fade-up"><strong>ADD BUS</strong></h2>
-            <p data-aos="fade-up"><strong>Add a new bus to the system</strong></p>
+            <p data-aos="fade-up"><strong>Add a new bus to your fleet in the panda system</strong></p>
           </div>
   
           <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
             <div class="col-xl-9 col-lg-12 mt-4">
-              <form action="" method="POST">
+              <form action="/addbus/" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group mt-3">
-                    <input type="text" name="name" class="form-control" id="name" style="border-radius: 10rem;" placeholder="BUS NAME" required>
+                    <input type="text" class="form-control" name="name" class="form-control" id="name" style="border-radius: 10rem;" placeholder="BUS NAME" required>
                   </div>
                   <div class="col-md-6 form-group mt-3">
-                    <input type="image" class="form-control" name="image" id="image" style="border-radius: 10rem;" placeholder="BUS IMAGE" required>
+                    <input type="file" class="form-control" name="image" id="image" style="border-radius: 10rem;"  required>
                   </div>
                   <div class="col-md-6 form-group mt-3">
                     <input type="text" class="form-control" name="number_plate" id="number_plate" style="border-radius: 10rem;" placeholder="NUMBER PLATE" required>
@@ -103,6 +103,55 @@
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="container mt-5">
+          
+          <div class="section-title" data-aos="fade-up">
+            <h2><strong>FLEET</strong></h2>
+            <h5><strong>YOUR FLEET</strong></h5>
+          </div>
+
+          <div class="row">
+            <div class="col-xl col-lg d-flex">
+              <div class="icon-boxes d-flex flex-column justify-content-center">
+                <form action="/updatefleet/" method="POST">
+                {% csrf_token %}
+                  <div class="row justify-content-center">
+                    {% for fleet in fleets %}
+                    <div class="col-lg-4 col-md-4 d-flex align-items-stretch justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                      <div class="member mt-4 mb-4 ml-4 mr-4 ">
+                        <div class="member-img">
+                          {% if fleet.image %}
+                            <img src="{{ fleet.image.url }}" class="img-fluid" style="border-radius: 10px;" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="member-info text-center">
+                          <h4><strong>{{ fleet.name }}</strong></h4>
+                          <h6><strong><input readonly class="text-center" name="busId" id="busId" style="border-radius: 2rem;" value="{{ fleet.id }}"></strong></h6>
+                          <p>
+                            <strong>
+                              <ul class="list-unstyled">
+                                <li>{{ fleet.number_plate }}</li>
+                                <li><input type="text" class="text-center" name="source" id="source" style="border-radius: 2rem;" value="{{ fleet.source }}"></li>
+                                <li><input type="text" class="text-center" name="destination" id="destination" style="border-radius: 2rem;" value="{{ fleet.destination }}"></li>
+                                <li><input type="text" class="text-center" name="remaining_seats" id="remaining_seats" style="border-radius: 2rem;" value="{{ fleet.remaining_seats }}"></li>
+                                <li><input type="text" class="text-center" name="price" id="price" style="border-radius: 2rem;" value="{{ fleet.price }}"></li>
+                                <li><input type="text" class="text-center" name="date" id="date" style="border-radius: 2rem;" value="{{ fleet.date }}"></li>
+                                <li><input type="text" class="text-center" name="departure_time" id="departure_time" style="border-radius: 2rem;" value="{{ fleet.departure_time }}"></li>
+                              </ul>
+                            </strong>
+                          </p> 
+                          <button type="submit" class="btn btn-primary">UPDATE FLEET</button>                         
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

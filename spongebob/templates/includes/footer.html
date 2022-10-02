@@ -114,8 +114,14 @@ crossorigin="anonymous"></script>
     else {
       document.getElementById("count").value = 1;
     }
+
+    var scount = document.getElementById("count").value;
+    var sprice = document.getElementById("unit_price").value;
+
+    document.getElementById("total_price").value = scount*sprice;
   }
 </script>
+
 <script>
   function download(){
     const form=document.getElementById('table');
