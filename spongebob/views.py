@@ -82,8 +82,8 @@ def signup_page(request):
             return redirect('/signup')
 
         myuser = User.objects.create_user(username, email, pass1)
-        myuser.first_name = fname
-        myuser.last_name = lname
+        myuser.first_name = fname.upper()
+        myuser.last_name = lname.upper()
         myuser.is_active = False
         myuser.save()
 
@@ -181,13 +181,20 @@ def bus_search_page(request):
         source = request.POST['source']
         destination = request.POST['destination']
         date = request.POST['date']
-        departure_time = request.POST['departure_time']
 
-        bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date, departure_time=departure_time)
-        return render(request, 'find_bus.html', {'Bus':bussearchobj})
+        bussearchobj = Bus.objects.filter(source=source,destination=destination,date=date)
+        if bussearchobj:
+            context={
+                'Bus':bussearchobj
+            }
+            return render(request, 'find_bus.html', context)
+        else:
+            context={
+                'error':f"No buses available for that route and date."
+            }
+            return render(request, 'find_bus.html', context)
     else:
-        busobj = Bus.objects.all()
-        return render(request, 'find_bus.html', {'Bus':busobj})
+        return render(request, 'find_bus.html')
         
 def bus_book_page(request, *args, **kwargs):
     if request.method == 'POST':
@@ -234,6 +241,9 @@ def booking_details_page(request, *args, **kwargs):
                 username=request.user.username
                 user_id=request.user.id
                 email=request.user.email
+                bus_admin_id=bus.bus_admin_id
+                number_plate=bus.number_plate
+                image=bus.image
                 name=bus.name
                 price=bus.price
                 total_price=int(no_of_seats) * bus.price
@@ -269,11 +279,15 @@ def booking_details_page(request, *args, **kwargs):
                     user_name=username,
                     user_email=email,
                     user_id=user_id,
+                    bus_admin_id=bus_admin_id,
+                    number_plate=number_plate,
+                    image=image,
                     source=source,
                     destination=destination,
                     bus_name=name,
                     date=date,
-                    price=total_price,
+                    price=price,
+                    total_price=total_price,
                     bus_id=bus_id,
                     time=time,
                     no_of_seats=no_of_seats,
@@ -328,7 +342,37 @@ def buses_page(request):
     return render(request, 'buses.html', context)
 
 def add_bus_page(request):
-    return render(request, 'add_bus.html')
+    if request.method == 'POST':
+        bus_admin_id=request.user.id
+        name = request.POST['name']
+        image = request.POST['image']
+        number_plate = request.POST['number_plate']
+        destination = request.POST['destination']
+        no_of_seats = request.POST['no_of_seats']
+        remaining_seats = request.POST['remaining_seats']
+        price = request.POST['price']
+        date = request.POST['date']
+        departure_time = request.POST['departure_time']
+
+        new_bus = Bus(bus_admin_id = bus_admin_id, name = name, image = image, number_plate = number_plate, destination = destination, no_of_seats = no_of_seats, remaining_seats = remaining_seats, price = price, date = date, departure_time = departure_time)
+        new_bus.save()
+        messages.success(request, "BUS ADDITION SUCCESSFUL, THANK YOU FOR USING PANDA")
+        return render(request, 'add_bus.html')
+    else:
+        return render(request, 'add_bus.html')
+    
+    #return render(request, 'add_bus.html')
 
 def bus_details_page(request):
-    return render(request, 'bus_details.html')
+    bus_admin_id = request.user.id
+
+    bus_details = BusBooking.objects.filter(bus_admin_id = bus_admin_id)
+    buss = Bus.objects.filter(bus_admin_id = bus_admin_id)
+    if bus_details:
+        context={
+            'bus_details':bus_details,
+            'buss':buss,
+        }
+        return render(request, 'bus_details.html', context)
+    else:
+        return render(request, 'bus_details.html')

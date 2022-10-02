@@ -24,39 +24,81 @@
               <form action="" method="POST">
               {% csrf_token %}
                 <div class="row">
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="text" name="name" class="form-control" id="name" style="border-radius: 10rem;" placeholder="BUS NAME" required>
                   </div>
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="image" class="form-control" name="image" id="image" style="border-radius: 10rem;" placeholder="BUS IMAGE" required>
                   </div>
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="text" class="form-control" name="number_plate" id="number_plate" style="border-radius: 10rem;" placeholder="NUMBER PLATE" required>
                   </div>
-                  <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="source" id="source" style="border-radius: 1rem;" placeholder="SOURCE" required>
+                  <div class="col-md-6 form-group mt-3">
+                    <select class="form-control" name="source" id="source" style="border-radius: 1rem;">
+                      <option>SOURCE</option>
+                      <option value="KAMPALA">KAMPALA</option>
+                      <option value="FORTPORTAL">FORTPORTAL</option>
+                      <option value="KASESE">KASESE</option>
+                      <option value="KABALE">KABALE</option>
+                      <option value="BUSHENYI">BUSHENYI</option>
+                      <option value="NTUNGAMO">NTUNGAMO</option>
+                      <option value="MBARARA">MBARARA</option>
+                      <option value="MASAKA">MASAKA</option>
+                      <option value="JINJA">JINJA</option>
+                      <option value="SOROTI">SOROTI</option>
+                      <option value="TORORO">TORORO</option>
+                      <option value="MBALE">MBALE</option>
+                      <option value="KABONG">KABONG</option>
+                      <option value="GULU">GULU</option>
+                      <option value="LIRA">LIRA</option>
+                      <option value="KITGUM">KITGUM</option>
+                      <option value="ARUA">ARUA</option>
+                      <option value="NEBBIE">NEBBIE</option>
+                      <option value="MASINDI">MASINDI</option>
+                    </select> 
                   </div>
-                  <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="destination" id="destination" style="border-radius: 1rem;" placeholder="DESTINATION" required>
+                  <div class="col-md-6 form-group mt-3">
+                    <select class="form-control" name="destination" id="destination" style="border-radius: 1rem;" >
+                      <option>DESTINATION</option>
+                      <option value="KAMPALA">KAMPALA</option>
+                      <option value="FORTPORTAL">FORTPORTAL</option>
+                      <option value="KASESE">KASESE</option>
+                      <option value="KABALE">KABALE</option>
+                      <option value="BUSHENYI">BUSHENYI</option>
+                      <option value="NTUNGAMO">NTUNGAMO</option>
+                      <option value="MBARARA">MBARARA</option>
+                      <option value="MASAKA">MASAKA</option>
+                      <option value="JINJA">JINJA</option>
+                      <option value="SOROTI">SOROTI</option>
+                      <option value="TORORO">TORORO</option>
+                      <option value="MBALE">MBALE</option>
+                      <option value="KABONG">KABONG</option>
+                      <option value="GULU">GULU</option>
+                      <option value="LIRA">LIRA</option>
+                      <option value="KITGUM">KITGUM</option>
+                      <option value="ARUA">ARUA</option>
+                      <option value="NEBBIE">NEBBIE</option>
+                      <option value="MASINDI">MASINDI</option>
+                    </select>
                   </div>
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="text" class="form-control" name="no_of_seats" id="no_of_seats" style="border-radius: 1rem;" placeholder="NO OF SEATS" required>
                   </div>
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="text" class="form-control" name="remaining_seats" id="remaining_seats" style="border-radius: 1rem;" placeholder="REMAINING SEATS" required>
                   </div>
-                  <div class="form-group mt-3">
+                  <div class="col-md-6 form-group mt-3">
                     <input type="text" class="form-control" name="price" id="price" style="border-radius: 1rem;" placeholder="PRICE" required>
                   </div>
-                  <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="date" id="date" style="border-radius: 1rem;" placeholder="DEPARTURE DATE" required>
+                  <div class="col-md-6 form-group mt-3">
+                    <input type='date' class="form-control" id="date" name="date" style="border-radius: 1rem;" placeholder="DEPARTURE DATE" required>
                   </div>
-                  <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="departure_time" id="departure_time" style="border-radius: 1rem;" placeholder="DEPARTURE TIME" required>
+                  <div class="col-md-6 form-group mt-3">
+                    <input type='time' class="form-control" id="departure_time" name="departure_time" style="border-radius: 1rem;" placeholder="DEPARTURE TIME" required>
                   </div>
                   <div class="form-group mt-3">
                     <div class="text-center">
-                      <button type="submit" class=" btn btn-secondary" style="border-radius: 10rem;"><strong>SEND MESSAGE</strong></button>
+                      <button type="submit" class=" btn btn-secondary" style="border-radius: 10rem;"><strong>ADD BUS</strong></button>
                     </div>
                   </div>
                 </div>

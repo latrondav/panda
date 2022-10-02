@@ -18,20 +18,34 @@
             <h4><strong>SEARCH, FIND A BUS AND PROCEED TO BOOK</strong></h4>
           </div>
 
+          {% if error %}
+            <div class="alert alert-danger text-center h4">
+              <strong>Sorry!, {{error}}</strong>
+            </div>
+            <div class='container-fluid text-center'>
+              <a class='btn btn-info ' href="/">Home</a>
+            </div>
+          {% else %}   
+          {% comment %}
+            <div class="alert alert-warning text-center">
+              <strong>Note: You are required to search for a bus going to your desired and book with correct Bus Id.</strong> 
+            </div>
+          {% endcomment %}
           <div class="row">
               <div class="col-xl col-lg" data-aos="fade-up">
                 <div class="content bg-bussearch">
                   <div class="row">
                     <div class="col-md-3">
-                      <h2>BUS<br>SEARCH</h2>
+                      <h2>BUS SEARCH</h2>
                     </div>
                     <div class="col-md-9">
                       <form action="/bussearch/" method="POST">
                         {% csrf_token %}
                           <div class="row">
+
                             <div class="col-md-3">
                               <div class="form-group">
-                                <div class='input-group date' id='datetimepicker1'>
+                                <div class='input-group' id='datetimepicker1'>
                                   <select class="form-control" id="source" name="source">
                                     <option value="FROM">FROM</option>
                                     <option value="KAMPALA">KAMPALA</option>
@@ -56,6 +70,9 @@
                                   </select> 
                                 </div>
                               </div><br>
+                            </div>
+
+                            <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                   <select class="form-control" id="destination" name="destination">
@@ -83,21 +100,19 @@
                                 </div>
                               </div>
                             </div>
+
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                   <input type='date' class="form-control" id="date" name="date" placeholder="DATE"/>
                                 </div>
                               </div><br>
-                              <div class="form-group">
-                                <div class='input-group date' id='datetimepicker1'>
-                                  <input type='time' class="form-control" id="departure_time" name="departure_time" placeholder="TIME"/>   
-                                </div>
-                              </div>
                             </div>
+
                             <div class="col-md-3 text-center">
                               <button type="submit" class="more-btn"><strong>SEARCH</strong></button>
                             </div>
+
                           </div>
                       </form>
                     </div>
@@ -105,6 +120,7 @@
                 </div>
               </div>
           </div>
+          {% endif %}
 
           <div class="row">
             <div class="col-xl col-lg d-flex">
