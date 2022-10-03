@@ -91,8 +91,18 @@ WSGI_APPLICATION = 'samaritan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'pandadb.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'heroku_33a619d44f24c59',
+        'OPTIONS': {
+
+        'init_command': 'SET default_storage_engine=INNODB',
+        'init_command': "SET sql_mode = 'STRICT_ALL_TABLES';",
+
+        },
+        'USER': 'bcdff6f6c544ed',
+        'PASSWORD': '55e3b883',
+        'HOST':'us-cdbr-east-06.cleardb.net',
+        'PORT':'3306',
     }
 }
 
