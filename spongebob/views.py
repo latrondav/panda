@@ -89,8 +89,6 @@ def signup_page(request):
         myuser.is_active = False
         myuser.save()
 
-        
-
         # WELCOME EMAIL
 
         subject = "WELCOME TO PANDA"
