@@ -226,7 +226,6 @@ def bus_book_page(request, *args, **kwargs):
 
     return render(request, 'book_bus.html')
     
-
 def booking_details_page(request, *args, **kwargs):
     if request.method == 'POST':
         bus_id=request.POST.get('busId')
