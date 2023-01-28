@@ -33,26 +33,33 @@ def login_page(request):
         username = request.POST['username']
         pass1 = request.POST['pass1']
         user = authenticate(username=username, password=pass1)
-        
 
-        try:
-            remember = request.POST['remember-me']
-            if remember:
-                settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-        except:
-            is_private = False
-            settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+        remember = request.POST.get('remember-me', None)
+        if remember:
+            request.session.set_expiry(None)
+        else:
+            request.session.set_expiry(0)
 
         if user is not None:
-            login(request, user)
-            fname = user.first_name
-            messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            return render(request, "index.html", {'fname': fname})
+            if user.is_active:
+                login(request, user)
+                messages.success(request, "Logged In Successfully.")
+                return redirect('/')
+            else:
+                messages.error(
+                    request, "Account is not activated, Please check your email for activation link or contact admin to activate your accunt.")
+                return redirect('/')
         else:
-            messages.error(request, "BAD CREDENTIALS")
-            return redirect('/login')
-
-    return render(request, 'login.html')
+            # check if the user exists
+            try:
+                User.objects.get(username=username)
+                messages.error(
+                    request, "Wrong Password, Try Again Or You Can Reset Password.")
+                return redirect('/')
+            except User.DoesNotExist:
+                messages.error(
+                    request, "Wrong Username Or Account DoesNot Exist.")
+                return redirect('/')
 
 def signup_page(request):
     if request.method == "POST":
