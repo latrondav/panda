@@ -60,6 +60,8 @@ def login_page(request):
                 messages.error(
                     request, "Wrong Username Or Account DoesNot Exist.")
                 return redirect('/')
+    else:
+        return render(request, 'login.html')
 
 def signup_page(request):
     if request.method == "POST":
