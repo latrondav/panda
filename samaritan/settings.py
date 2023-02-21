@@ -14,13 +14,11 @@ from operator import truediv
 from pathlib import Path
 from .info import *
 import os
-import django_heroku
-import dj_database_url
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+EMAIL_BACKEND = EMAIL_BACKEND
 EMAIL_USE_TLS = EMAIL_USE_TLS
 EMAIL_HOST = EMAIL_HOST
 EMAIL_HOST_USER = EMAIL_HOST_USER
@@ -36,7 +34,7 @@ SECRET_KEY = 'django-insecure-=)^tm-yzp7l7l)mk&pyo%=-8(8(!1mtv!4a7%^-qu!#5kv_esu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -59,7 +57,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'samaritan.urls'
@@ -76,8 +73,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries' : {
-                'staticfiles': 'django.templatetags.static', 
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
             }
         },
     },
@@ -91,18 +88,8 @@ WSGI_APPLICATION = 'samaritan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_33a619d44f24c59',
-        'OPTIONS': {
-
-        'init_command': 'SET default_storage_engine=INNODB',
-        'init_command': "SET sql_mode = 'STRICT_ALL_TABLES';",
-
-        },
-        'USER': 'bcdff6f6c544ed',
-        'PASSWORD': '55e3b883',
-        'HOST':'us-cdbr-east-06.cleardb.net',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'pandadb.sqlite3',
     }
 }
 
@@ -149,11 +136,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+# SECURE_SSL_REDIRECT = True

@@ -17,7 +17,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from . models import Contact, Bus, BookedSeats, BusBooking
-from . token import generate_token
+from .token_1 import generate_token
 from .forms import BookBusForm
 from django.core.mail import EmailMessage, send_mail
 
@@ -33,26 +33,35 @@ def login_page(request):
         username = request.POST['username']
         pass1 = request.POST['pass1']
         user = authenticate(username=username, password=pass1)
-        
 
-        try:
-            remember = request.POST['remember-me']
-            if remember:
-                settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-        except:
-            is_private = False
-            settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+        remember = request.POST.get('remember-me', None)
+        if remember:
+            request.session.set_expiry(None)
+        else:
+            request.session.set_expiry(0)
 
         if user is not None:
-            login(request, user)
-            fname = user.first_name
-            messages.success(request, "LOGGED IN SUCCESSFULLY!")
-            return render(request, "index.html", {'fname': fname})
+            if user.is_active:
+                login(request, user)
+                messages.success(request, "Logged In Successfully.")
+                return redirect('/')
+            else:
+                messages.error(
+                    request, "Account is not activated, Please check your email for activation link or contact admin to activate your accunt.")
+                return redirect('/')
         else:
-            messages.error(request, "BAD CREDENTIALS")
-            return redirect('/login')
-
-    return render(request, 'login.html')
+            # check if the user exists
+            try:
+                User.objects.get(username=username)
+                messages.error(
+                    request, "Wrong Password, Try Again Or You Can Reset Password.")
+                return redirect('/')
+            except User.DoesNotExist:
+                messages.error(
+                    request, "Wrong Username Or Account DoesNot Exist.")
+                return redirect('/')
+    else:
+        return render(request, 'login.html')
 
 def signup_page(request):
     if request.method == "POST":
@@ -88,8 +97,6 @@ def signup_page(request):
         myuser.last_name = lname.upper()
         myuser.is_active = False
         myuser.save()
-
-        
 
         # WELCOME EMAIL
 
@@ -228,7 +235,6 @@ def bus_book_page(request, *args, **kwargs):
 
     return render(request, 'book_bus.html')
     
-
 def booking_details_page(request, *args, **kwargs):
     if request.method == 'POST':
         bus_id=request.POST.get('busId')
