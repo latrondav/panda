@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+
+    {% if user.is_authenticated %}
+
+    <!-- ======= Hero Section ======= -->
+
+      <section class="hero d-flex flex-column justify-content-center align-items-center">
+        <div class="container text-center" data-aos="fade-in">
+          <h1><strong>Panda Bus Booking and Ticketing System</strong></h1>
+          <h2><strong>Travel Around the Pearl of Africa with just a Click, We are Here for you.</strong></h2>
+          <div class="align-items-center text-center">
+            <a href="/findbus" class="btn-get-started scrollto"><strong> Hello {{ user.first_name }}, Get Started </strong></a>
+          </div>
+        </div>
+      </section>
+
+      
+        
+          <!-- ======= Find Bus Section ======= -->
+          <section id="services" class="services section-bg">
+            <div class="container" style="margin-top: 30px;">
+              <main id="main"></main>
+            </div>
+          </section>
+      </main>
+      <!-- End Hero -->
+    <!-- End Hero Section -->
+
+    {% else %}
+
+    <!-- ======= Hero Section ======= -->
+
+      <section class="hero d-flex flex-column justify-content-center align-items-center">
+        <div class="container text-center" data-aos="fade-in">
+          <h1><strong>Panda Bus Booking and Ticketing System</strong></h1>
+          <h2><strong>Travel Around the Pearl of Africa with just a Click, We are Here for you.</strong></h2>
+          <div class="align-items-center text-center">
+            <a href="login/" class="btn-get-started"><strong>Login and Get Started</strong></a>
+          </div>
+        </div>
+      </section><!-- End Hero -->
+
+      <main id="main">
+
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-xl-4 col-lg-5" data-aos="fade-up">
+                <div class="content">
+                  <h3><strong>Why Choose PANDA for your Bus booking and Ticketing option?</strong></h3>
+                  <p><strong>
+                    Bus reservations with Panda are made using a clear, 
+                    straightforward approach that allows you the option to 
+                    select the seat of your choice from the seating arrangement and pay only what is necessary.
+                    We are a committed company with exceptional customer care service.
+                  </strong></p>
+                  <div class="text-center">
+                    <a href="services/" class="more-btn"><strong>Learn More</strong><i class="bx bx-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-8 col-lg-7 d-flex">
+                <div class="icon-boxes d-flex flex-column justify-content-center">
+                  <div class="row">
+                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-receipt"></i>
+                        <h4><strong>MISSION</strong></h4>
+                        <p><strong>Our mission is to simplify consumer needs and set the bar for online bus and ticketing systems in East and Central Africa.</strong></p>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-cube-alt"></i>
+                        <h4><strong>VISION</strong></h4>
+                        <p><strong>Our Vision is to maximize customer satisfaction while increasing revenue using the PANDA online bus booking and ticketing system.</strong></p>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-images"></i>
+                        <h4><strong>CORE VALUES</strong></h4>
+                        <p><strong>Passion.</strong></p>
+                        <p><strong>Fairness.</strong></p>
+                        <p><strong>Teamwork.</strong></p>
+                        <p><strong>Diversity and Inclusion.</strong></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section><!-- End Why Us Section -->
+      </main>
+
+    <!-- End Hero Section -->
+
+    {% endif %}
+
+    {% include 'includes/footer.html' %}
+    
+  </body>
+</html>

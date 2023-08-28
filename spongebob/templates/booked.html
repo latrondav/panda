@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+
+    <main id="main">
+ <!-- ======= Services Section ======= -->
+ <section id="services" class="services section-bg">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2><strong>BOOKED TICKET</strong></h2>
+        <h4><strong>Dear {{user.username}}, you have successfully booked a bus ticket! Please download your ticket below.</strong></h4>
+      </div> 
+
+      <div class="row" data-aos="fade-up">
+        <div class="col-6">
+          <button type="button" class="btn btn-primary" onclick="downloadTicket()"><strong>DOWNLOAD TICKET</strong></button>
+        </div>
+        <div class="col-6">
+          <a class="btn btn-info mb-2" href="/bookings/"><strong>SEE BOOKINGS</strong></a>
+        </div>
+      </div>
+
+      <div class="Ticket" id="Ticket" style="background-color: rgb(92, 92, 92);" data-aos="fade-up">
+        <div class="row ticket-header" style="background-color: #fff;" data-aos="fade-up">
+          <div class="col-4"><img class="mb-4 mt-4" src="{% static 'assets/brand/panda.svg' %}" alt="" width="70" height="50"></div>
+          <div class="col-4 mb-4 mt-4"><h3  style="display:inline"><strong>PANDA BUS TICKET</strong></h3></div>
+          <div class="col-4 mb-4 mt-4"><span class="mb-4 mt-4"><h4><strong>RECEIPT NO: {{booked.id}}</strong></h4></div>
+        </div>
+
+        <div class="row mb-4 mt-4 ticket-body">
+        <div class="col-6" data-aos="fade-up">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Name: </b>{{user.first_name}} {{user.last_name}}</li>
+            <li class="list-group-item"><b>Phone: </b> {{booked.phone_no}}</li>
+            <li class="list-group-item"><b>From: </b>{{booked.source}}</li>
+            <li class="list-group-item"><b>To: </b>{{booked.destination}}</li>
+            <li class="list-group-item"><b>Date: </b>{{booked.date}}</li>
+            <li class="list-group-item"><b>Departure: </b>{{booked.time}}</li>
+            <li class="list-group-item"><b>Departure: </b>{{booked.bus_station}}</li>
+          </ul>
+        </div>
+        <div class="col-6" data-aos="fade-up">
+          <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item"><b>Bus: </b>{{booked.bus_name}}</li>
+            <li class="list-group-item"><b>Number Plate: </b>{{booked.number_plate}}</li>
+            <li class="list-group-item"><b>No of seats: </b>{{booked.no_of_seats}}</li>
+            <li class="list-group-item"><b>Seats: </b>{{booked.seat_numbers}}</li>
+            <li class="list-group-item"><b>Payment Method: </b>{{booked.payment_method}}</li>
+            <li class="list-group-item"><b>Seat Price: </b>UGX. {{booked.unit_price}}</li>
+            <li class="list-group-item"><b>Total: UGX. {{booked.total_price}}</li>
+          </ul>
+        </div>
+        </div>
+
+        <div class="row mb-4 mt-4 ticket-footer" style="background-color: #fff;">
+          <div class="col-6"><h6  style="display:inline"><strong>😊THANK YOU FOR BOOKING WITH PANDA AND SAFE TRAVELS.💥</strong></h6></div>
+          <div class="col-6"><h6  style="display:inline"><strong>CONTACT US ON 0758185739 AND EMAIL US ON panda@gmail.com </strong></h6></div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Services Section -->
+</main>
+
+
+
+{% include 'includes/footer.html' %}
+  
+  </body>
+
+  
+</html>

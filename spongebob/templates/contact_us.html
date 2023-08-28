@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+    
+    <main id="main">
+     <!-- ======= Contact Section ======= -->
+     <section id="contact" class="contact">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2 data-aos="fade-up"><strong>Contact</strong></h2>
+            <p data-aos="fade-up"><strong>Feel free to reach out to us incase of any inquires, Guidance, Help, Feedback and more through the following mediums.</strong></p>
+          </div>
+  
+          <div class="row justify-content-center">
+  
+            <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up">
+              <div class="info-box">
+                <i class="bx bx-map"></i>
+                <h3><strong>Our Address</strong></h3>
+                <p><strong>Industrial Area, First street, Off Jinja Rd, Opposite Mat Abarcus Business SChool.</strong></p>
+              </div>
+            </div>
+  
+            <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="info-box">
+                <i class="bx bx-envelope"></i>
+                <h3><strong>Email Us</strong></h3>
+                <p><strong>pandalogin0@gmail.com  </strong></p>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="info-box">
+                <i class="bx bx-phone-call"></i>
+                <h3><strong>Call Us</strong></h3>
+                <p><strong>+256 754420657</strong><br><strong>+256 776510149</strong></p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-xl-9 col-lg-12 mt-4">
+              <form action="/contact_us/" method="POST">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" id="name" style="border-radius: 10rem;" placeholder="NAME" required>
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" style="border-radius: 10rem;" placeholder="EMAIL" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="text" class="form-control" name="subject" id="subject" style="border-radius: 10rem;" placeholder="SUBJECT" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" style="border-radius: 1rem;" placeholder="MESSAGE" required></textarea>
+                  </div>
+                  <div class="form-group mt-3">
+                    <div class="text-center">
+                      <button type="submit" class=" btn btn-secondary" style="border-radius: 10rem;"><strong>SEND MESSAGE</strong></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Contact Section -->
+    </main>
+
+    {% include 'includes/footer.html' %}
+   
+  </body>
+</html>

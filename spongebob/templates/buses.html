@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+    
+    {% include 'includes/header.html' %}
+
+    <main id="main">
+      <!-- ======= Why Us Section ======= -->
+      <section id="why-us" class="why-us">
+        <div class="container">
+          
+          <div class="section-title" data-aos="fade-up">
+            <h2><strong>BUSES</strong></h2>
+            <h5><strong>AVAILABLE BUSES</strong></h5>
+          </div>
+
+          <div class="row">
+            <div class="col-xl col-lg d-flex">
+              <div class="icon-boxes d-flex flex-column justify-content-center">
+                <form action="/busbook/" method="POST">
+                {% csrf_token %}
+                  <div class="row justify-content-center">
+                    {% for bus in Bus %}
+                    <div class="col-lg-4 col-md-4 d-flex align-items-stretch justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                      <div class="member mt-4 mb-4 ml-4 mr-4 ">
+                        <div class="member-img">
+                          {% if bus.image %}
+                            <img src="{{ bus.image.url }}" class="img-fluid" style="border-radius: 10px;" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="member-info text-center">
+                          <h4><strong>{{ bus.name }}</strong></h4>
+                          <h6><strong><input readonly class="bg-white text-center" name="busId" id="busId" value="{{ bus.id }}"></strong></h6>
+                          <p>
+                            <strong>
+                              <ul class="list-unstyled">
+                                <li>NUMBER PLATE: {{ bus.number_plate }}</li>
+                                <li>FROM: {{ bus.source }}</li>
+                                <li>TO: {{ bus.destination }}</li>
+                                <li>AVAILABLE SEATS: {{ bus.remaining_seats }}</li>
+                                <li>PRICE: UGX {{ bus.price }}</li>
+                                <li>DEPARTURE DATE: {{ bus.date }}</li>
+                                <li>DEPARTURE TIME: {{ bus.departure_time }}</li>
+                              </ul>
+                            </strong>
+                          </p>                          
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Why Us Section -->
+     
+    </main>
+
+    {% include 'includes/footer.html' %}
+  
+  </body>
+</html>

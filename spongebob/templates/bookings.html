@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  
+  {% load static %}
+
+  {% include 'includes/head.html' %}
+
+  <body>
+
+    {% include 'includes/header.html' %}
+
+    <main id="main">
+      <!-- ======= Bookings Section ======= -->
+      <section id="why-us" class="why-us">
+        <div class="container">
+          <div class="section-title" data-aos="fade-up">
+            <h2><strong>YOUR BOOKINGS</strong></h2>
+          </div>
+
+          {% if error %}
+            <div class="alert alert-danger text-center h4">
+              <strong>Sorry!, {{error}}</strong>
+            </div>
+            <div class='container-fluid text-center'>
+              <a class='btn btn-info ' href="/findbus">Find bus</a>
+            </div>
+          {% else %} 
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr class="text-center">
+                  <th>BOOKING ID</th>
+                  <th>BUS NAME</th>
+                  <th>SOURCE</th>
+                  <th>DESTINATION</th>
+                  <th>PRICE</th>
+                  <th>DATE</th> 
+                  <th>DEPARTURE TIME</th>
+                  <th>NO OF SEATS</th>
+                  <th>BOOKING STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for booking in bookings %}
+                <form action="/booked/" method="POST">
+                {% csrf_token %}
+                <tr class="h6 text-center">
+                  <td><input readonly class="text-center" name="booked_id" id="booked_id" style="border-radius: 2rem;" value="{{booking.id}}"></td>
+                  <td>{{booking.bus_name}}</td>
+                  <td>{{booking.source}}</td>
+                  <td>{{booking.destination}}</td>
+                  <td>UGX.{{booking.price}}</td>
+                  <td>{{booking.date}}</td>
+                  <td>{{booking.time}}</td>
+                  <td>{{booking.no_of_seats}}</td>
+                  <td><button type="submit" class="btn btn-primary" >Booked</button></td>
+                </tr>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+      </section>
+      <!-- End Bookings Section -->
+     
+    </main>
+
+    {% include 'includes/footer.html' %}
+  
+  </body>
+</html>
